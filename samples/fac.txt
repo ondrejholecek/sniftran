@@ -1,0 +1,58 @@
+> tcpdump -ni port1 -Xe port not 22
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on port1, link-type EN10MB (Ethernet), capture size 65535 bytes
+05:30:18.567531 00:0c:29:13:c0:cf > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Request who-has 10.108.17.254 tell 10.108.16.121, length 46
+	0x0000:  0001 0800 0604 0001 000c 2913 c0cf 0a6c  ..........)....l
+	0x0010:  1079 0000 0000 0000 0a6c 11fe 0000 0000  .y.......l......
+	0x0020:  0000 0000 0000 0000 0000 0000 0000       ..............
+05:30:18.584842 94:de:80:61:a4:04 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Request who-has 10.108.18.77 tell 10.108.17.106, length 46
+	0x0000:  0001 0800 0604 0001 94de 8061 a404 0a6c  ...........a...l
+	0x0010:  116a 0000 0000 0000 0a6c 124d 0000 0000  .j.......l.M....
+	0x0020:  0000 0000 0000 0000 0000 0000 0000       ..............
+05:30:18.716668 08:5b:0e:a0:e2:3a > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Request who-has 10.108.17.97 tell 10.108.17.129, length 46
+	0x0000:  0001 0800 0604 0001 085b 0ea0 e23a 0a6c  .........[...:.l
+	0x0010:  1181 0000 0000 0000 0a6c 1161 0000 0000  .........l.a....
+	0x0020:  0000 0000 0000 0000 0000 0000 0000       ..............
+05:30:19.475055 00:0c:29:48:29:e3 > 33:33:00:00:00:0c, ethertype IPv6 (0x86dd), length 208: fe80::18f:aba6:cdc7:e96b.64105 > ff02::c.1900: UDP, length 146
+	0x0000:  6000 0000 009a 1101 fe80 0000 0000 0000  `...............
+	0x0010:  018f aba6 cdc7 e96b ff02 0000 0000 0000  .......k........
+	0x0020:  0000 0000 0000 000c fa69 076c 009a 388c  .........i.l..8.
+	0x0030:  4d2d 5345 4152 4348 202a 2048 5454 502f  M-SEARCH.*.HTTP/
+	0x0040:  312e 310d 0a48 6f73 743a 5b46 4630 323a  1.1..Host:[FF02:
+	0x0050:  3a43 5d3a 3139 3030 0d0a 5354 3a75 726e  :C]:1900..ST:urn
+	0x0060:  3a4d 6963 726f 736f 6674 2057 696e 646f  :Microsoft.Windo
+	0x0070:  7773 2050 6565 7220 4e61 6d65 2052 6573  ws.Peer.Name.Res
+	0x0080:  6f6c 7574 696f 6e20 5072 6f74 6f63 6f6c  olution.Protocol
+	0x0090:  3a20 5634 3a49 5056 363a 4c69 6e6b 4c6f  :.V4:IPV6:LinkLo
+	0x00a0:  6361 6c0d 0a4d 616e 3a22 7373 6470 3a64  cal..Man:"ssdp:d
+	0x00b0:  6973 636f 7665 7222 0d0a 4d58 3a33 0d0a  iscover"..MX:3..
+	0x00c0:  0d0a                                     ..
+05:30:19.584688 94:de:80:61:a4:04 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Request who-has 10.108.18.77 tell 10.108.17.106, length 46
+	0x0000:  0001 0800 0604 0001 94de 8061 a404 0a6c  ...........a...l
+	0x0010:  116a 0000 0000 0000 0a6c 124d 0000 0000  .j.......l.M....
+	0x0020:  0000 0000 0000 0000 0000 0000 0000       ..............
+05:30:19.666797 00:0c:29:bc:99:5b > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Request who-has 192.168.1.99 tell 192.168.1.111, length 46
+	0x0000:  0001 0800 0604 0001 000c 29bc 995b c0a8  ..........)..[..
+	0x0010:  016f 0000 0000 0000 c0a8 0163 0000 0000  .o.........c....
+	0x0020:  0000 0000 0000 0000 0000 0000 0000       ..............
+05:30:19.716504 08:5b:0e:a0:e2:3a > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Request who-has 10.108.17.97 tell 10.108.17.129, length 46
+	0x0000:  0001 0800 0604 0001 085b 0ea0 e23a 0a6c  .........[...:.l
+	0x0010:  1181 0000 0000 0000 0a6c 1161 0000 0000  .........l.a....
+	0x0020:  0000 0000 0000 0000 0000 0000 0000       ..............
+05:30:20.246821 00:0c:29:ad:25:66 > 01:00:5e:7f:ff:fa, ethertype IPv4 (0x0800), length 175: 10.108.16.161.62861 > 239.255.255.250.1900: UDP, length 133
+	0x0000:  4500 00a1 4edf 0000 0111 5f66 0a6c 10a1  E...N....._f.l..
+	0x0010:  efff fffa f58d 076c 008d 50e9 4d2d 5345  .......l..P.M-SE
+	0x0020:  4152 4348 202a 2048 5454 502f 312e 310d  ARCH.*.HTTP/1.1.
+	0x0030:  0a48 6f73 743a 3233 392e 3235 352e 3235  .Host:239.255.25
+	0x0040:  352e 3235 303a 3139 3030 0d0a 5354 3a75  5.250:1900..ST:u
+	0x0050:  726e 3a73 6368 656d 6173 2d75 706e 702d  rn:schemas-upnp-
+	0x0060:  6f72 673a 6465 7669 6365 3a49 6e74 6572  org:device:Inter
+	0x0070:  6e65 7447 6174 6577 6179 4465 7669 6365  netGatewayDevice
+	0x0080:  3a31 0d0a 4d61 6e3a 2273 7364 703a 6469  :1..Man:"ssdp:di
+	0x0090:  7363 6f76 6572 220d 0a4d 583a 330d 0a0d  scover"..MX:3...
+	0x00a0:  0a                                       .
+^C
+8 packets captured
+8 packets received by filter
+0 packets dropped by kernel
+> 

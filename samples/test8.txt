@@ -1,0 +1,60 @@
+Script started on Tue 23 Jun 2015 07:04:43 PM CEST
+]0;oho@chaos: ~/miniprojects/sniftranoho@chaos:~/miniprojects/sniftran$ [13P(reverse-i-search)`':[Cs': ssh admin@10.108.17.105[1@s[C[C[C[1@h[C[C[C]0;oho@chaos: ~/miniprojects/sniftranoho@chaos:~/miniprojects/sniftran$ ssh admin@10.108.17.105
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the RSA key sent by the remote host is
+d0:c2:69:f3:e7:53:55:10:f5:e5:70:e5:06:c5:77:8b.
+Please contact your system administrator.
+Add correct host key in /home/oho/.ssh/known_hosts to get rid of this message.
+Offending RSA key in /home/oho/.ssh/known_hosts:190
+Password authentication is disabled to avoid man-in-the-middle attacks.
+Keyboard-interactive authentication is disabled to avoid man-in-the-middle attacks.
+FG600C3913802320 # diag [5D[Kconf vdom
+
+FG600C3913802320 (vdom) # edit first 
+current vf=first:3
+
+FG600C3913802320 (first) # diag snif pack any "port not 22"
+interfaces=[any]
+filters=[port not 22]
+0.402124 arp who-has 10.108.18.77 tell 10.108.17.106
+0.699777 arp who-has 10.108.19.254 tell 10.108.16.207
+0.836438 arp who-has 10.108.17.97 tell 10.108.17.129
+0.886579 arp who-has 10.108.19.254 tell 10.108.16.166
+1.165554 10.108.16.207.64108 -> 239.255.255.250.1900: udp 133
+1.247895 arp who-has 10.108.17.254 tell 10.108.16.121
+1.402253 arp who-has 10.108.18.77 tell 10.108.17.106
+1.527607 fe80::18f:aba6:cdc7:e96b.64105 -> ff02::c.1900: udp 146 [hlim 1]
+1.744150 arp who-has 192.168.1.99 tell 192.168.1.111
+1.836568 arp who-has 10.108.17.97 tell 10.108.17.129
+2.103253 fe80::b527:d7f7:507f:18f8.546 -> ff02::1:2.547: udp 91 [hlim 1]
+2.244339 arp who-has 10.108.17.254 tell 10.108.16.121
+2.406316 arp who-has 10.108.18.77 tell 10.108.17.106
+2.619173 arp who-has 192.168.1.99 tell 192.168.1.111
+2.795652 fe80::99a:fd71:1187:5248.62859 -> ff02::c.1900: udp 146 [hlim 1]
+2.836698 arp who-has 10.108.17.97 tell 10.108.17.129
+2.859804 arp who-has 10.108.17.254 tell 10.108.16.125
+3.247910 arp who-has 10.108.17.254 tell 10.108.16.121
+3.386046 arp who-has 10.108.17.33 tell 10.108.16.133
+3.406446 arp who-has 10.108.18.77 tell 10.108.17.106
+3.530817 10.108.16.217.137 -> 10.108.19.255.137: udp 50
+3.619303 arp who-has 192.168.1.99 tell 192.168.1.111
+3.858705 arp who-has 10.108.17.254 tell 10.108.16.125
+4.164225 10.108.16.207.64108 -> 239.255.255.250.1900: udp 133
+4.268933 arp who-has 10.108.17.254 tell 10.108.16.121
+4.386176 arp who-has 10.108.17.33 tell 10.108.16.133
+4.406577 arp who-has 10.108.18.77 tell 10.108.17.106
+4.538076 fe80::18f:aba6:cdc7:e96b.64105 -> ff02::c.1900: udp 146 [hlim 1]
+
+28 packets received by filter
+0 packets dropped by kernel
+
+FG600C3913802320 (first) # ^Dexit
+Connection to 10.108.17.105 closed.
+]0;oho@chaos: ~/miniprojects/sniftranoho@chaos:~/miniprojects/sniftran$ exit
+
+Script done on Tue 23 Jun 2015 07:05:10 PM CEST

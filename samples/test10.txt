@@ -1,0 +1,197 @@
+Script started on Tue 23 Jun 2015 07:09:19 PM CEST
+]0;oho@chaos: ~/miniprojects/sniftranoho@chaos:~/miniprojects/sniftran$ [13P(reverse-i-search)`':[Cs': ssh admin@10.108.17.105[1@s[C[C[C[1@h[C[C[C]0;oho@chaos: ~/miniprojects/sniftranoho@chaos:~/miniprojects/sniftran$ ssh admin@10.108.17.105
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the RSA key sent by the remote host is
+d0:c2:69:f3:e7:53:55:10:f5:e5:70:e5:06:c5:77:8b.
+Please contact your system administrator.
+Add correct host key in /home/oho/.ssh/known_hosts to get rid of this message.
+Offending RSA key in /home/oho/.ssh/known_hosts:190
+Password authentication is disabled to avoid man-in-the-middle attacks.
+Keyboard-interactive authentication is disabled to avoid man-in-the-middle attacks.
+FG600C3913802320 # conf vdom
+
+FG600C3913802320 (vdom) # edit root
+current vf=root:0
+
+FG600C3913802320 (root) # diag snif pack any "port not 22" 
+<verbose>    
+1: print header of packets
+2: print header and data from ip of packets
+3: print header and data from ethernet of packets (if available)
+4: print header of packets with interface name
+5: print header and data from ip of packets with interface name
+6: print header and data from ethernet of packets (if available) with intf name
+
+FG600C3913802320 (root) # diag snif pack any "port not 22" 5
+interfaces=[any]
+filters=[port not 22]
+0.758788 wan1 in arp who-has 10.108.17.33 tell 10.108.16.133
+0x0000	 0001 0800 0604 0001 000c 29cb 0575 0a6c	..........)..u.l
+0x0010	 1085 0000 0000 0000 0a6c 1121 0000 0000	.........l.!....
+0x0020	 0000 0000 0000 0000 0000 0000 0000     	..............
+
+0.821955 wan1 in arp who-has 10.108.17.254 tell 10.108.16.125
+0x0000	 0001 0800 0604 0001 000c 2942 41e2 0a6c	..........)BA..l
+0x0010	 107d 0000 0000 0000 0a6c 11fe 0000 0000	.}.......l......
+0x0020	 0000 0000 0000 0000 0000 0000 0000     	..............
+
+0.989338 wan1 in fe80::18f:aba6:cdc7:e96b.64105 -> ff02::c.1900: udp 146 [hlim 1]
+0x0000	 6000 0000 009a 1101 fe80 0000 0000 0000	`...............
+0x0010	 018f aba6 cdc7 e96b ff02 0000 0000 0000	.......k........
+0x0020	 0000 0000 0000 000c fa69 076c 009a 388c	.........i.l..8.
+0x0030	 4d2d 5345 4152 4348 202a 2048 5454 502f	M-SEARCH.*.HTTP/
+0x0040	 312e 310d 0a48 6f73 743a 5b46 4630 323a	1.1..Host:[FF02:
+0x0050	 3a43 5d3a 3139 3030 0d0a 5354 3a75 726e	:C]:1900..ST:urn
+0x0060	 3a4d 6963 726f 736f 6674 2057 696e 646f	:Microsoft.Windo
+0x0070	 7773 2050 6565 7220 4e61 6d65 2052 6573	ws.Peer.Name.Res
+0x0080	 6f6c 7574 696f 6e20 5072 6f74 6f63 6f6c	olution.Protocol
+0x0090	 3a20 5634 3a49 5056 363a 4c69 6e6b 4c6f	:.V4:IPV6:LinkLo
+0x00a0	 6361 6c0d 0a4d 616e 3a22 7373 6470 3a64	cal..Man:"ssdp:d
+0x00b0	 6973 636f 7665 7222 0d0a 4d58 3a33 0d0a	iscover"..MX:3..
+0x00c0	 0d0a                                   	..
+
+1.217189 wan1 in arp who-has 10.108.17.254 tell 10.108.16.121
+0x0000	 0001 0800 0604 0001 000c 2913 c0cf 0a6c	..........)....l
+0x0010	 1079 0000 0000 0000 0a6c 11fe 0000 0000	.y.......l......
+0x0020	 0000 0000 0000 0000 0000 0000 0000     	..............
+
+1.821839 wan1 in arp who-has 10.108.17.254 tell 10.108.16.125
+0x0000	 0001 0800 0604 0001 000c 2942 41e2 0a6c	..........)BA..l
+0x0010	 107d 0000 0000 0000 0a6c 11fe 0000 0000	.}.......l......
+0x0020	 0000 0000 0000 0000 0000 0000 0000     	..............
+
+2.217074 wan1 in arp who-has 10.108.17.254 tell 10.108.16.121
+0x0000	 0001 0800 0604 0001 000c 2913 c0cf 0a6c	..........)....l
+0x0010	 1079 0000 0000 0000 0a6c 11fe 0000 0000	.y.......l......
+0x0020	 0000 0000 0000 0000 0000 0000 0000     	..............
+
+2.257875 wan1 in fe80::99a:fd71:1187:5248.62859 -> ff02::c.1900: udp 146 [hlim 1]
+0x0000	 6000 0000 009a 1101 fe80 0000 0000 0000	`...............
+0x0010	 099a fd71 1187 5248 ff02 0000 0000 0000	...q..RH........
+0x0020	 0000 0000 0000 000c f58b 076c 009a 36f8	...........l..6.
+0x0030	 4d2d 5345 4152 4348 202a 2048 5454 502f	M-SEARCH.*.HTTP/
+0x0040	 312e 310d 0a48 6f73 743a 5b46 4630 323a	1.1..Host:[FF02:
+0x0050	 3a43 5d3a 3139 3030 0d0a 5354 3a75 726e	:C]:1900..ST:urn
+0x0060	 3a4d 6963 726f 736f 6674 2057 696e 646f	:Microsoft.Windo
+0x0070	 7773 2050 6565 7220 4e61 6d65 2052 6573	ws.Peer.Name.Res
+0x0080	 6f6c 7574 696f 6e20 5072 6f74 6f63 6f6c	olution.Protocol
+0x0090	 3a20 5634 3a49 5056 363a 4c69 6e6b 4c6f	:.V4:IPV6:LinkLo
+0x00a0	 6361 6c0d 0a4d 616e 3a22 7373 6470 3a64	cal..Man:"ssdp:d
+0x00b0	 6973 636f 7665 7222 0d0a 4d58 3a33 0d0a	iscover"..MX:3..
+0x00c0	 0d0a                                   	..
+
+2.479580 wan1 in arp who-has 10.108.18.77 tell 10.108.17.106
+0x0000	 0001 0800 0604 0001 94de 8061 a404 0a6c	...........a...l
+0x0010	 116a 0000 0000 0000 0a6c 124d 0000 0000	.j.......l.M....
+0x0020	 0000 0000 0000 0000 0000 0000 0000     	..............
+
+2.874815 wan1 in arp who-has 10.108.17.97 tell 10.108.17.129
+0x0000	 0001 0800 0604 0001 085b 0ea0 e23a 0a6c	.........[...:.l
+0x0010	 1181 0000 0000 0000 0a6c 1161 0000 0000	.........l.a....
+0x0020	 0000 0000 0000 0000 0000 0000 0000     	..............
+
+3.479711 wan1 in arp who-has 10.108.18.77 tell 10.108.17.106
+0x0000	 0001 0800 0604 0001 94de 8061 a404 0a6c	...........a...l
+0x0010	 116a 0000 0000 0000 0a6c 124d 0000 0000	.j.......l.M....
+0x0020	 0000 0000 0000 0000 0000 0000 0000     	..............
+
+3.874946 wan1 in arp who-has 10.108.17.97 tell 10.108.17.129
+0x0000	 0001 0800 0604 0001 085b 0ea0 e23a 0a6c	.........[...:.l
+0x0010	 1181 0000 0000 0000 0a6c 1161 0000 0000	.........l.a....
+0x0020	 0000 0000 0000 0000 0000 0000 0000     	..............
+
+4.249780 wan1 in arp who-has 10.108.17.254 tell 10.108.16.121
+0x0000	 0001 0800 0604 0001 000c 2913 c0cf 0a6c	..........)....l
+0x0010	 1079 0000 0000 0000 0a6c 11fe 0000 0000	.y.......l......
+0x0020	 0000 0000 0000 0000 0000 0000 0000     	..............
+
+4.292793 wan1 in fe80::1177:6699:c9f5:89ab.546 -> ff02::1:2.547: udp 93 [hlim 1]
+0x0000	 6000 0000 0065 1101 fe80 0000 0000 0000	`....e..........
+0x0010	 1177 6699 c9f5 89ab ff02 0000 0000 0000	.wf.............
+0x0020	 0000 0000 0001 0002 0222 0223 0065 e13f	.........".#.e.?
+0x0030	 0158 c220 0008 0002 189c 0001 000e 0001	.X..............
+0x0040	 0001 18af 44fd 000c 2951 3fd3 0003 000c	....D...)Q?.....
+0x0050	 1700 0c29 0000 0000 0000 0000 0027 000f	...).........'..
+0x0060	 000d 6361 6d69 6c6c 652d 6d65 6931 3200	..camille-mei12.
+0x0070	 1000 0e00 0001 3700 084d 5346 5420 352e	......7..MSFT.5.
+0x0080	 3000 0600 0800 1800 1700 1100 27       	0...........'
+
+4.479842 wan1 in arp who-has 10.108.18.77 tell 10.108.17.106
+0x0000	 0001 0800 0604 0001 94de 8061 a404 0a6c	...........a...l
+0x0010	 116a 0000 0000 0000 0a6c 124d 0000 0000	.j.......l.M....
+0x0020	 0000 0000 0000 0000 0000 0000 0000     	..............
+
+4.875076 wan1 in arp who-has 10.108.17.97 tell 10.108.17.129
+0x0000	 0001 0800 0604 0001 085b 0ea0 e23a 0a6c	.........[...:.l
+0x0010	 1181 0000 0000 0000 0a6c 1161 0000 0000	.........l.a....
+0x0020	 0000 0000 0000 0000 0000 0000 0000     	..............
+
+4.983470 wan1 in fe80::18f:aba6:cdc7:e96b.64105 -> ff02::c.1900: udp 146 [hlim 1]
+0x0000	 6000 0000 009a 1101 fe80 0000 0000 0000	`...............
+0x0010	 018f aba6 cdc7 e96b ff02 0000 0000 0000	.......k........
+0x0020	 0000 0000 0000 000c fa69 076c 009a 388c	.........i.l..8.
+0x0030	 4d2d 5345 4152 4348 202a 2048 5454 502f	M-SEARCH.*.HTTP/
+0x0040	 312e 310d 0a48 6f73 743a 5b46 4630 323a	1.1..Host:[FF02:
+0x0050	 3a43 5d3a 3139 3030 0d0a 5354 3a75 726e	:C]:1900..ST:urn
+0x0060	 3a4d 6963 726f 736f 6674 2057 696e 646f	:Microsoft.Windo
+0x0070	 7773 2050 6565 7220 4e61 6d65 2052 6573	ws.Peer.Name.Res
+0x0080	 6f6c 7574 696f 6e20 5072 6f74 6f63 6f6c	olution.Protocol
+0x0090	 3a20 5634 3a49 5056 363a 4c69 6e6b 4c6f	:.V4:IPV6:LinkLo
+0x00a0	 6361 6c0d 0a4d 616e 3a22 7373 6470 3a64	cal..Man:"ssdp:d
+0x00b0	 6973 636f 7665 7222 0d0a 4d58 3a33 0d0a	iscover"..MX:3..
+0x00c0	 0d0a                                   	..
+
+5.249419 wan1 in arp who-has 10.108.17.254 tell 10.108.16.121
+0x0000	 0001 0800 0604 0001 000c 2913 c0cf 0a6c	..........)....l
+0x0010	 1079 0000 0000 0000 0a6c 11fe 0000 0000	.y.......l......
+0x0020	 0000 0000 0000 0000 0000 0000 0000     	..............
+
+5.697499 wan1 in arp who-has 10.108.17.254 tell 10.108.16.125
+0x0000	 0001 0800 0604 0001 000c 2942 41e2 0a6c	..........)BA..l
+0x0010	 107d 0000 0000 0000 0a6c 11fe 0000 0000	.}.......l......
+0x0020	 0000 0000 0000 0000 0000 0000 0000     	..............
+
+6.249549 wan1 in arp who-has 10.108.17.254 tell 10.108.16.121
+0x0000	 0001 0800 0604 0001 000c 2913 c0cf 0a6c	..........)....l
+0x0010	 1079 0000 0000 0000 0a6c 11fe 0000 0000	.y.......l......
+0x0020	 0000 0000 0000 0000 0000 0000 0000     	..............
+
+6.252252 wan1 in fe80::99a:fd71:1187:5248.62859 -> ff02::c.1900: udp 146 [hlim 1]
+0x0000	 6000 0000 009a 1101 fe80 0000 0000 0000	`...............
+0x0010	 099a fd71 1187 5248 ff02 0000 0000 0000	...q..RH........
+0x0020	 0000 0000 0000 000c f58b 076c 009a 36f8	...........l..6.
+0x0030	 4d2d 5345 4152 4348 202a 2048 5454 502f	M-SEARCH.*.HTTP/
+0x0040	 312e 310d 0a48 6f73 743a 5b46 4630 323a	1.1..Host:[FF02:
+0x0050	 3a43 5d3a 3139 3030 0d0a 5354 3a75 726e	:C]:1900..ST:urn
+0x0060	 3a4d 6963 726f 736f 6674 2057 696e 646f	:Microsoft.Windo
+0x0070	 7773 2050 6565 7220 4e61 6d65 2052 6573	ws.Peer.Name.Res
+0x0080	 6f6c 7574 696f 6e20 5072 6f74 6f63 6f6c	olution.Protocol
+0x0090	 3a20 5634 3a49 5056 363a 4c69 6e6b 4c6f	:.V4:IPV6:LinkLo
+0x00a0	 6361 6c0d 0a4d 616e 3a22 7373 6470 3a64	cal..Man:"ssdp:d
+0x00b0	 6973 636f 7665 7222 0d0a 4d58 3a33 0d0a	iscover"..MX:3..
+0x00c0	 0d0a                                   	..
+
+6.697137 wan1 in arp who-has 10.108.17.254 tell 10.108.16.125
+0x0000	 0001 0800 0604 0001 000c 2942 41e2 0a6c	..........)BA..l
+0x0010	 107d 0000 0000 0000 0a6c 11fe 0000 0000	.}.......l......
+0x0020	 0000 0000 0000 0000 0000 0000 0000     	..............
+
+6.771121 wan1 in arp who-has 10.108.17.33 tell 10.108.16.133
+0x0000	 0001 0800 0604 0001 000c 29cb 0575 0a6c	..........)..u.l
+0x0010	 1085 0000 0000 0000 0a6c 1121 0000 0000	.........l.!....
+0x0020	 0000 0000 0000 0000 0000 0000 0000     	..............
+
+
+22 packets received by filter
+0 packets dropped by kernel
+
+FG600C3913802320 (root) # ^Dexit
+Connection to 10.108.17.105 closed.
+]0;oho@chaos: ~/miniprojects/sniftranoho@chaos:~/miniprojects/sniftran$ exit
+
+Script done on Tue 23 Jun 2015 07:09:57 PM CEST

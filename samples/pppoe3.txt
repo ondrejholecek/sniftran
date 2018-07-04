@@ -1,0 +1,727 @@
+Script started on Wed 24 Jun 2015 01:18:45 PM CEST
+]0;oho@chaos: ~/miniprojects/sniftranoho@chaos:~/miniprojects/sniftran$ [13P(reverse-i-search)`':[C[31@s': grep -i 'point' /etc/services[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[7Ps': ssh admin@10.108.16.72]0;oho@chaos: ~/miniprojects/sniftranoho@chaos:~/miniprojects/sniftran$ ssh admin@10.108.16.72
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the RSA key sent by the remote host is
+98:ca:64:bc:eb:2d:ae:c7:f6:1f:a9:63:c6:12:ad:e8.
+Please contact your system administrator.
+Add correct host key in /home/oho/.ssh/known_hosts to get rid of this message.
+Offending RSA key in /home/oho/.ssh/known_hosts:285
+Password authentication is disabled to avoid man-in-the-middle attacks.
+Keyboard-interactive authentication is disabled to avoid man-in-the-middle attacks.
+FGVM010000018426 # get ip ad
+ambiguous command before 'ip'
+
+FGVM010000018426 # get ip ad[K[K[6D[Kdiag ip6 ad
+command parse error before 'ip6'
+
+FGVM010000018426 # diag ip6 ad[K[K[K address 
+list      List IP addresses.
+add       Add IP address.
+delete    Delete IP address.
+ 
+FGVM010000018426 # diag ip address  [16D[Kdiag ipv6 address list 
+dev=19 devname=vsys_fgfm flag=P scope=254 prefix=128 addr=::1 
+dev=17 devname=vsys_ha flag=P scope=254 prefix=128 addr=::1 
+dev=15 devname=root flag=P scope=254 prefix=128 addr=::1 
+
+FGVM010000018426 # conf sys int
+
+FGVM010000018426 (interface) # edit port2
+
+FGVM010000018426 (port2) # show
+config system interface
+    edit "port2"
+        set vdom "root"
+        set mode pppoe
+        set type physical
+        set snmp-index 2
+        set username "fortinet"
+        set password ENC nHO8eYTMIScAx+1ByAuQmbiNMUD8e6L8yzA36VW0OT/Q7k2v6zT5ZPZciTD+7t+F/1culowpWgj08S+hOy7vae1MPFX9Ld6ezZoGo5rqIVVvX9Msfz5boZ7b47WLQuhSQgXuEgmXlqDqyi06a4aFkcmZQjpjiAFC+QTi3RXstPnGMcFcSuJvbL72g+nvpeW2KbZ6Zg==
+    next
+end
+
+FGVM010000018426 (port2) # conf ipv6 
+
+FGVM010000018426 (ipv6) # get
+ip6-mode            : static 
+ip6-allowaccess     : 
+ip6-reachable-time  : 0
+ip6-retrans-time    : 0
+ip6-hop-limit       : 0
+ip6-address         : ::/0
+ip6-extra-addr:
+ip6-send-adv        : disable 
+autoconf            : disable 
+dhcp6-relay-service : disable 
+
+FGVM010000018426 (ipv6) # set mo[K[Kip6-mode 
+static    Static setting.
+dhcp      DHCPv6 client mode.
+pppoe     IPv6 over PPPoE mode.
+ 
+FGVM010000018426 (ipv6) # set ip6-mode pppoe 
+
+FGVM010000018426 (ipv6) # end
+
+FGVM010000018426 (port2) # end
+
+FGVM010000018426 # ddiag deb en
+
+FGVM010000018426 # diag deb en
+
+FGVM010000018426 # diag deb en[11Dend[Kset ip6-mode pppoe[18Dget[Kconf ipv6[9Dshow[Kedit port2[10Dconf sys int[12Ddiag ipv6 address listid=29013 logdesc="PPPD started" msg="pppd is started"
+PPP send: LCP Configure_Request id(1) len(14) [Maximum_Received_Unit 1492] [Magic_Number 38EC3E4E] 
+PPP recv: LCP Configure_Request id(1) len(18) [Maximum_Received_Unit 1492] [Authentication_Protocol unknown] [Magic_Number 42F77C7C] 
+PPP send: LCP Configure_Nak id(1) len(9) [Authentication_Protocol CHAP algorithm=MSCHAPv2] 
+
+dev=19 devname=vsys_fgfm flag=P scope=254 prefix=128 addr=::1 
+dev=17 devname=vsys_ha flag=P scope=254 prefix=128 addr=::1 
+dev=15 devname=root flag=P scope=254 prefix=128 addr=::1 
+
+FGVM010000018426 # PPP recv: LCP Configure_Request id(2) len(19) [Maximum_Received_Unit 1492] [Authentication_Protocol CHAP algorithm=MSCHAPv2] [Magic_Number 42F77C7C] 
+PPP send: LCP Configure_Ack id(2) len(19) [Maximum_Received_Unit 1492] [Authentication_Protocol CHAP algorithm=MSCHAPv2] [Magic_Number 42F77C7C] 
+PPP send: LCP Configure_Request id(1) len(14) [Maximum_Received_Unit 1492] [Magic_Number 38EC3E4E] 
+PPP recv: LCP Configure_Ack id(1) len(14) [Maximum_Received_Unit 1492] [Magic_Number 38EC3E4E] 
+PPP send: LCP Echo_Request id(0) len(8) [Magic_Number 38ec3e4e]
+PPP recv: LCP Echo_Request id(0) len(8) [Magic_Number 42f77c7c]
+PPP send: LCP Echo_Reply id(0) len(8) [Magic_Number 38ec3e4e]
+PPP recv: CHAP Challenge id(109) 
+PPP send: CHAP Response id(109) 
+PPP recv: LCP Echo_Reply id(0) len(8) [Magic_Number 42f77c7c]
+PPP recv: CHAP Success id(109) msg(S=87229F73EF58F304098964A63FEDCEDA5AB0D64D M=Access granted)
+PPP send: IPCP Configure_Request id(1) [IP_Address 0.0.0.0] [Primary_DNS_IP_Address 0.0.0.0] [Seconday_DNS_IP_Address 0.0.0.0] 
+PPP send: IPV6CP Configure_Request id(1) [Interface Identifier 020c297cfffe498a] 
+PPP recv: CCP Configure_Request id(1) [Deflate] [MVRCA] [BSD_LZW_Compress] 
+PPP send: LCP Protocol_Reject id(2) len(44) 
+PPP recv: IPCP Configure_Request id(1) [IP_Compression_Protocol Van Jacobson] [IP_Address 10.108.239.254] 
+PPP send: IPCP Configure_Reject id(1) [IP_Compression_Protocol Van Jacobson] 
+PPP recv: IPV6CP Configure_Request id(1) [Interface Identifier dd657d6075f52281] 
+PPP send: IPV6CP Configure_Ack id(1) [Interface Identifier dd657d6075f52281] 
+PPP recv: IPCP Configure_Nak id(1) [IP_Address 10.108.236.28] [Primary_DNS_IP_Address 8.8.8.8] [Seconday_DNS_IP_Address 8.8.4.4] 
+PPP send: IPCP Configure_Request id(2) [IP_Address 10.108.236.28] [Primary_DNS_IP_Address 8.8.8.8] [Seconday_DNS_IP_Address 8.8.4.4] 
+PPP recv: IPV6CP Configure_Ack id(1) [Interface Identifier 020c297cfffe498a] 
+PPP recv: IPCP Configure_Request id(2) [IP_Address 10.108.239.254] 
+PPP send: IPCP Configure_Ack id(2) [IP_Address 10.108.239.254] 
+PPP recv: IPCP Configure_Ack id(2) [IP_Address 10.108.236.28] [Primary_DNS_IP_Address 8.8.8.8] [Seconday_DNS_IP_Address 8.8.4.4] 
+id=29009 logdesc="PPPoE status report" gateway=10.108.239.254 assigned=10.108.236.28 mtu=1492 msg="PPPoE status report"
+PPP send: LCP Echo_Request id(1) len(8) [Magic_Number 38ec3e4e]
+PPP recv: LCP Echo_Reply id(1) len(8) [Magic_Number 42f77c7c]
+diag ipv6 address list
+dev=19 devname=vsys_fgfm flag=P scope=254 prefix=128 addr=::1 
+dev=17 devname=vsys_ha flag=P scope=254 prefix=128 addr=::1 
+dev=15 devname=root flag=P scope=254 prefix=128 addr=::1 
+dev=21 devname=ppp0 flag=P scope=253 prefix=10 addr=fe80::20c:297c:fffe:498a 
+
+FGVM010000018426 # PPP recv: LCP Echo_Request id(1) len(8) [Magic_Number 42f77c7c]
+PPP send: LCP Echo_Reply id(1) len(8) [Magic_Number 38ec3e4e]
+PPP send: LCP Echo_Request id(2) len(8) [Magic_Number 38ec3e4e]
+PPP recv: LCP Echo_Reply id(2) len(8) [Magic_Number 42f77c7c]
+diag [5D[Kget router PPP send: LCP Echo_Request id(3) len(8) [Magic_Number 38ec3e4e]
+PPP recv: LCP Echo_Reply id(3) len(8) [Magic_Number 42f77c7c]
+in6 ro
+command parse error before 'in6'
+
+FGVM010000018426 # get router in6 ro al
+
+command parse error before 'in6'
+Command fail. Return code -61
+
+FGVM010000018426 # get router info6PPP recv: LCP Echo_Request id(2) len(8) [Magic_Number 42f77c7c]
+PPP send: LCP Echo_Reply id(2) len(8) [Magic_Number 38ec3e4e]
+PPP send: LCP Echo_Request id(4) len(8) [Magic_Number 38ec3e4e]
+PPP recv: LCP Echo_Reply id(4) len(8) [Magic_Number 42f77c7c]
+ routing-table 
+IPv6 Routing Table
+Codes: K - kernel route, C - connected, S - static, R - RIP, O - OSPF,
+       IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       I - IS-IS, B - BGP
+       * - candidate default
+
+Timers: Uptime
+
+C       ::1/128 via ::, root, 01:19:49
+C       fe80::/10 via ::, ppp0, 00:00:21
+
+
+FGVM010000018426 # PPP send: LCP Echo_Request id(5) len(8) [Magic_Number 38ec3e4e]
+PPP recv: LCP Echo_Reply id(5) len(8) [Magic_Number 42f77c7c]
+conf sys int
+
+FGVM010000018426 (interface) # edit poPPP recv: LCP Echo_Request id(3) len(8) [Magic_Number 42f77c7c]
+rPPP send: LCP Echo_Reply id(3) len(8) [Magic_Number 38ec3e4e]
+PPP send: LCP Echo_Request id(6) len(8) [Magic_Number 38ec3e4e]
+PPP recv: LCP Echo_Reply id(6) len(8) [Magic_Number 42f77c7c]
+t2
+
+FGVM010000018426 (port2) # show
+config system interface
+    edit "port2"
+        set vdom "root"
+        set mode pppoe
+        set type physical
+        set snmp-index 2
+            config ipv6
+                set ip6-mode pppoe
+            end
+        set username "fortinet"
+        set password ENC nHO8eYTMIScAx+1ByAuQmbiNMUD8e6L8yzA36VW0OT/Q7k2v6zT5ZPZciTD+7t+F/1culowpWgj08S+hOy7vae1MPFX9Ld6ezZoGo5rqIVVvX9Msfz5boZ7b47WLQuhSQgXuEgmXlqDqyi06a4aFkcmZQjpjiAFC+QTi3RXstPnGMcFcSuJvbL72g+nvpeW2KbZ6Zg==
+    next
+end
+
+FGVM010000018426 (port2) # conf ipv6 
+
+FGVM010000018426 (ipv6) # get
+ip6-mode            : pppoe 
+ip6-allowaccess     : 
+ip6-reachable-time  : 0
+ip6-retrans-time    : 0
+ip6-hop-limit       : 0
+autoconf            : disable 
+
+FGVM010000018426 (ipv6) # set autoconf PPP send: LCP Echo_Request id(7) len(8) [Magic_Number 38ec3e4e]
+PPP recv: LCP Echo_Reply id(7) len(8) [Magic_Number 42f77c7c]
+en
+
+FGVM010000018426 (ipv6) # end
+
+FGVM010000018426 (port2) # end
+
+FGVM010000018426 # dPPP recv: LCP Echo_Request id(4) len(8) [Magic_Number 42f77c7c]
+PPP send: LCP Echo_Reply id(4) len(8) [Magic_Number 38ec3e4e]
+PPP send: LCP Echo_Request id(8) len(8) [Magic_Number 38ec3e4e]
+iPPP recv: LCP Echo_Reply id(8) len(8) [Magic_Number 42f77c7c]
+ag ipv6[K[K6 
+command parse error before 'ip6'
+
+FGVM010000018426 # diag ip6 [Kv6 PPP send: LCP Echo_Request id(9) len(8) [Magic_Number 38ec3e4e]
+PPP recv: LCP Echo_Reply id(9) len(8) [Magic_Number 42f77c7c]
+address list 
+dev=19 devname=vsys_fgfm flag=P scope=254 prefix=128 addr=::1 
+dev=17 devname=vsys_ha flag=P scope=254 prefix=128 addr=::1 
+dev=15 devname=root flag=P scope=254 prefix=128 addr=::1 
+dev=21 devname=ppp0 flag=P scope=253 prefix=10 addr=fe80::20c:297c:fffe:498a 
+
+FGVM010000018426 # diag ipv6 address list
+dev=19 devname=vsys_fgfm flag=P scope=254 prefix=128 addr=::1 
+dev=17 devname=vsys_ha flag=P scope=254 prefix=128 addr=::1 
+dev=15 devname=root flag=P scope=254 prefix=128 addr=::1 
+dev=21 devname=ppp0 flag=P scope=253 prefix=10 addr=fe80::20c:297c:fffe:498a 
+
+FGVM010000018426 # PPP recv: LCP Echo_Request id(5) len(8) [Magic_Number 42f77c7c]
+PPP send: LCP Echo_Reply id(5) len(8) [Magic_Number 38ec3e4e]
+PPP send: LCP Echo_Request id(10) len(8) [Magic_Number 38ec3e4e]
+PPP recv: LCP Echo_Reply id(10) len(8) [Magic_Number 42f77c7c]
+conf sys int
+
+FGVM010000018426 (interface) # PPP send: LCP Echo_Request id(11) len(8) [Magic_Number 38ec3e4e]
+PPP recv: LCP Echo_Reply id(11) len(8) [Magic_Number 42f77c7c]
+edit port2
+
+FGVM010000018426 (port2) # set stpforward[8Datus[K down
+
+FGVM010000018426 (port2) # end
+id=29014 logdesc="PPPD exiting" msg="pppd is exiting"
+c
+FGVM010000018426 # conf sys int
+
+FGVM010000018426 (interface) # edit port2
+
+FGVM010000018426 (port2) # set stpforward[8Datus[K up
+
+FGVM010000018426 (port2) # end
+
+FGVM010000018426 # id=29013 logdesc="PPPD started" msg="pppd is started"
+PPP send: LCP Configure_Request id(1) len(14) [Maximum_Received_Unit 1492] [Magic_Number 37E5F667] 
+PPP recv: LCP Configure_Request id(1) len(18) [Maximum_Received_Unit 1492] [Authentication_Protocol unknown] [Magic_Number BF0D2DCF] 
+PPP send: LCP Configure_Nak id(1) len(9) [Authentication_Protocol CHAP algorithm=MSCHAPv2] 
+PPP recv: LCP Configure_Request id(2) len(19) [Maximum_Received_Unit 1492] [Authentication_Protocol CHAP algorithm=MSCHAPv2] [Magic_Number BF0D2DCF] 
+PPP send: LCP Configure_Ack id(2) len(19) [Maximum_Received_Unit 1492] [Authentication_Protocol CHAP algorithm=MSCHAPv2] [Magic_Number BF0D2DCF] 
+PPP send: LCP Configure_Request id(1) len(14) [Maximum_Received_Unit 1492] [Magic_Number 37E5F667] 
+PPP recv: LCP Configure_Ack id(1) len(14) [Maximum_Received_Unit 1492] [Magic_Number 37E5F667] 
+PPP send: LCP Echo_Request id(0) len(8) [Magic_Number 37e5f667]
+PPP recv: LCP Echo_Request id(0) len(8) [Magic_Number bf0d2dcf]
+PPP send: LCP Echo_Reply id(0) len(8) [Magic_Number 37e5f667]
+PPP recv: CHAP Challenge id(50) 
+PPP send: CHAP Response id(50) 
+PPP recv: LCP Echo_Reply id(0) len(8) [Magic_Number bf0d2dcf]
+PPP recv: CHAP Success id(50) msg(S=EB5C2DE5DC486C7F0351CF6BD6F0D5A26220DDBB M=Access granted)
+PPP send: IPCP Configure_Request id(1) [IP_Address 0.0.0.0] [Primary_DNS_IP_Address 0.0.0.0] [Seconday_DNS_IP_Address 0.0.0.0] 
+PPP send: IPV6CP Configure_Request id(1) [Interface Identifier 020c297cfffe498a] 
+PPP recv: CCP Configure_Request id(1) [Deflate] [MVRCA] [BSD_LZW_Compress] 
+PPP send: LCP Protocol_Reject id(2) len(44) 
+PPP recv: IPCP Configure_Request id(1) [IP_Compression_Protocol Van Jacobson] [IP_Address 10.108.239.254] 
+PPP send: IPCP Configure_Reject id(1) [IP_Compression_Protocol Van Jacobson] 
+PPP recv: IPV6CP Configure_Request id(1) [Interface Identifier a8b71c15e42a99fd] 
+PPP send: IPV6CP Configure_Ack id(1) [Interface Identifier a8b71c15e42a99fd] 
+PPP recv: IPCP Configure_Nak id(1) [IP_Address 10.108.236.51] [Primary_DNS_IP_Address 8.8.8.8] [Seconday_DNS_IP_Address 8.8.4.4] 
+PPP send: IPCP Configure_Request id(2) [IP_Address 10.108.236.51] [Primary_DNS_IP_Address 8.8.8.8] [Seconday_DNS_IP_Address 8.8.4.4] 
+PPP recv: IPV6CP Configure_Ack id(1) [Interface Identifier 020c297cfffe498a] 
+PPP recv: IPCP Configure_Request id(2) [IP_Address 10.108.239.254] 
+PPP send: IPCP Configure_Ack id(2) [IP_Address 10.108.239.254] 
+PPP recv: IPCP Configure_Ack id(2) [IP_Address 10.108.236.51] [Primary_DNS_IP_Address 8.8.8.8] [Seconday_DNS_IP_Address 8.8.4.4] 
+id=29009 logdesc="PPPoE status report" gateway=10.108.239.254 assigned=10.108.236.51 mtu=1492 msg="PPPoE status report"
+
+FGVM010000018426 # PPP send: LCP Echo_Request id(1) len(8) [Magic_Number 37e5f667]
+PPP recv: LCP Echo_Reply id(1) len(8) [Magic_Number bf0d2dcf]
+endset status up[13Dedit port2[K[10Dconf sys int[12Dend[Kset status down[15Dedit port2[K[10Dconf sys int[12Ddiag ipv6 address list
+dev=19 devname=vsys_fgfm flag=P scope=254 prefix=128 addr=::1 
+dev=17 devname=vsys_ha flag=P scope=254 prefix=128 addr=::1 
+dev=15 devname=root flag=P scope=254 prefix=128 addr=::1 
+dev=22 devname=ppp0 flag= scope=0 prefix=64 addr=2001:470:59af:d102:20c:297c:fffe:498a preferred=14395 valid=86395
+dev=22 devname=ppp0 flag=P scope=253 prefix=10 addr=fe80::20c:297c:fffe:498a 
+
+FGVM010000018426 # PPP recv: LCP Echo_Request id(1) len(8) [Magic_Number bf0d2dcf]
+PPP send: LCP Echo_Reply id(1) len(8) [Magic_Number 37e5f667]
+PPP send: LCP Echo_Request id(2) len(8) [Magic_Number 37e5f667]
+PPP recv: LCP Echo_Reply id(2) len(8) [Magic_Number bf0d2dcf]
+get router info6 rou al
+                                ^
+% Invalid input detected at '^' marker.
+
+
+FGVM010000018426 # get router info6 rou al[K[K
+IPv6 Routing Table
+Codes: K - kernel route, C - connected, S - static, R - RIP, O - OSPF,
+       IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       I - IS-IS, B - BGP
+       * - candidate default
+
+Timers: Uptime
+
+C       ::1/128 via ::, root, 01:20:56
+C       2001:470:59af:d102::/64 via ::, ppp0, 00:00:11
+C       fe80::/10 via ::, ppp0, 00:00:14
+
+
+FGVM010000018426 # PPP send: LCP Echo_Request id(3) len(8) [Magic_Number 37e5f667]
+PPP recv: LCP Echo_Reply id(3) len(8) [Magic_Number bf0d2dcf]
+PPP recv: LCP Echo_Request id(2) len(8) [Magic_Number bf0d2dcf]
+PPP send: LCP Echo_Reply id(2) len(8) [Magic_Number 37e5f667]
+PPP send: LCP Echo_Request id(4) len(8) [Magic_Number 37e5f667]
+PPP recv: LCP Echo_Reply id(4) len(8) [Magic_Number bf0d2dcf]
+
+FGVM010000018426 # PPP send: LCP Echo_Request id(5) len(8) [Magic_Number 37e5f667]
+PPP recv: LCP Echo_Reply id(5) len(8) [Magic_Number bf0d2dcf]
+PPP recv: LCP Echo_Request id(3) len(8) [Magic_Number bf0d2dcf]
+PPP send: LCP Echo_Reply id(3) len(8) [Magic_Number 37e5f667]
+PPP send: LCP Echo_Request id(6) len(8) [Magic_Number 37e5f667]
+PPP recv: LCP Echo_Reply id(6) len(8) [Magic_Number bf0d2dcf]
+exe ping6 PPP send: LCP Echo_Request id(7) len(8) [Magic_Number 37e5f667]
+PPP recv: LCP Echo_Reply id(7) len(8) [Magic_Number bf0d2dcf]
+PPP recv: LCP Echo_Request id(4) len(8) [Magic_Number bf0d2dcf]
+PPP send: LCP Echo_Reply id(4) len(8) [Magic_Number 37e5f667]
+PPP send: LCP Echo_Request id(8) len(8) [Magic_Number 37e5f667]
+PPP recv: LCP Echo_Reply id(8) len(8) [Magic_Number bf0d2dcf]
+
+Usage: ping6 [-LUdfnqrvaA] [-c count] [-i interval] [-w deadline]
+             [-p pattern] [-s packetsize] [-t ttl] [-I interface]
+             [-M mtu discovery hint] [-S sndbuf]
+             [-F flow label] [-Q traffic class] [hop1 ...] destination
+
+FGVM010000018426 # exe pigPPP send: LCP Echo_Request id(9) len(8) [Magic_Number 37e5f667]
+PPP recv: LCP Echo_Reply id(9) len(8) [Magic_Number bf0d2dcf]
+[Kng-options[8D6[K 2001:1488:0:3::2
+PING 2001:1488:0:3::2(2001:1488:0:3::2) 56 data bytes
+64 bytes from 2001:1488:0:3::2: icmp_seq=1 ttl=59 time=24.4 ms
+64 bytes from 2001:1488:0:3::2: icmp_seq=2 ttl=59 time=23.3 ms
+
+--- 2001:1488:0:3::2 ping statistics ---
+3 packets transmitted, 2 packets received, 33% packet loss, time 2042ms
+rtt min/avg/max/mdev = 23.394/23.916/24.438/0.522 ms
+
+FGVM010000018426 # PPP recv: LCP Echo_Request id(5) len(8) [Magic_Number bf0d2dcf]
+PPP send: LCP Echo_Reply id(5) len(8) [Magic_Number 37e5f667]
+PPP send: LCP Echo_Request id(10) len(8) [Magic_Number 37e5f667]
+PPP recv: LCP Echo_Reply id(10) len(8) [Magic_Number bf0d2dcf]
+PPP send: LCP Echo_Request id(11) len(8) [Magic_Number 37e5f667]
+PPP recv: LCP Echo_Reply id(11) len(8) [Magic_Number bf0d2dcf]
+
+FGVM010000018426 # 
+FGVM010000018426 # exe ping6 2001:1488:0:3::2PPP recv: LCP Echo_Request id(6) len(8) [Magic_Number bf0d2dcf]
+PPP send: LCP Echo_Reply id(6) len(8) [Magic_Number 37e5f667]
+PPP send: LCP Echo_Request id(12) len(8) [Magic_Number 37e5f667]
+PPP recv: LCP Echo_Reply id(12) len(8) [Magic_Number bf0d2dcf]
+diag snif pack pPPP send: LCP Echo_Request id(13) len(8) [Magic_Number 37e5f667]
+PPP recv: LCP Echo_Reply id(13) len(8) [Magic_Number bf0d2dcf]
+pp0 "" 6 0 a
+unknown host 2001:1488:0:3::2diag
+
+FGVM010000018426 # diag snif pack PPP recv: LCP Echo_Request id(7) len(8) [Magic_Number bf0d2dcf]
+PPP send: LCP Echo_Reply id(7) len(8) [Magic_Number 37e5f667]
+pPPP send: LCP Echo_Request id(14) len(8) [Magic_Number 37e5f667]
+PPP recv: LCP Echo_Reply id(14) len(8) [Magic_Number bf0d2dcf]
+pp0 "" 6 0 a
+interfaces=[ppp0]
+filters=[]
+2015-06-24 11:21:53.925475 ppp0 out 10.108.236.51.56937 -> 10.108.3.18.53: udp 43
+0x0000	 0000 0000 0000 2031 3035 3233 0800 4500	.......10523..E.
+0x0010	 0047 4878 0000 4011 2e11 0a6c ec33 0a6c	.GHx..@....l.3.l
+0x0020	 0312 de69 0035 0033 e1a4 7509 0100 0001	...i.5.3..u.....
+0x0030	 0000 0000 0000 0e73 6f66 7477 6172 6575	.......softwareu
+0x0040	 7064 6174 6506 766d 7761 7265 0363 6f6d	pdate.vmware.com
+0x0050	 0000 0100 01                           	.....
+
+2015-06-24 11:21:56.161935 ppp0 out 2001:470:59af:d102:20c:297c:fffe:498a -> 2001:1488:0:3::2: [icmp6 sum ok] icmp6: echo request seq 1 (len 64, hlim 64)
+0x0000	 0000 0000 0000 0000 0000 0000 86dd 6000	..............`.
+0x0010	 0000 0040 3a40 2001 0470 59af d102 020c	...@:@...pY.....
+0x0020	 297c fffe 498a 2001 1488 0000 0003 0000	)|..I...........
+0x0030	 0000 0000 0002 8000 225d a600 0001 d492	........"]......
+0x0040	 8a55 7278 0200 0809 0a0b 0c0d 0e0f 1011	.Urx............
+0x0050	 1213 1415 1617 1819 1a1b 1c1d 1e1f 2021	...............!
+0x0060	 2223 2425 2627 2829 2a2b 2c2d 2e2f 3031	"#$%&'()*+,-./01
+0x0070	 3233 3435 3637                         	234567
+
+2015-06-24 11:21:56.186445 ppp0 in 2001:1488:0:3::2 -> 2001:470:59af:d102:20c:297c:fffe:498a: [icmp6 sum ok] icmp6: echo reply seq 1 (len 64, hlim 59)
+0x0000	 0000 0000 0001 0000 0000 0000 86dd 6000	..............`.
+0x0010	 0000 0040 3a3b 2001 1488 0000 0003 0000	...@:;..........
+0x0020	 0000 0000 0002 2001 0470 59af d102 020c	.........pY.....
+0x0030	 297c fffe 498a 8100 215d a600 0001 d492	)|..I...!]......
+0x0040	 8a55 7278 0200 0809 0a0b 0c0d 0e0f 1011	.Urx............
+0x0050	 1213 1415 1617 1819 1a1b 1c1d 1e1f 2021	...............!
+0x0060	 2223 2425 2627 2829 2a2b 2c2d 2e2f 3031	"#$%&'()*+,-./01
+0x0070	 3233 3435 3637                         	234567
+
+2015-06-24 11:21:56.403591 ppp0 out 10.108.236.51.56937 -> 208.91.112.52.53: udp 29
+0x0000	 0000 0000 0000 0000 0000 0000 0800 4500	..............E.
+0x0010	 0039 ae2d 0000 4011 9557 0a6c ec33 d05b	.9.-..@..W.l.3.[
+0x0020	 7034 de69 0035 0025 60bd 5762 0100 0001	p4.i.5.%`.Wb....
+0x0030	 0000 0000 0000 0461 7574 6803 6766 7802	.......auth.gfx.
+0x0040	 6d73 0000 0100 01                      	ms.....
+
+2015-06-24 11:21:56.590359 ppp0 in 208.91.112.52.53 -> 10.108.236.51.56937: udp 450
+0x0000	 0000 0000 0001 0000 0000 0000 0800 4500	..............E.
+0x0010	 01de c2b2 0000 3011 8f2d d05b 7034 0a6c	......0..-.[p4.l
+0x0020	 ec33 0035 de69 01ca 05ec 5762 8180 0001	.3.5.i....Wb....
+0x0030	 0004 0008 0008 0461 7574 6803 6766 7802	.......auth.gfx.
+0x0040	 6d73 0000 0100 01c0 0c00 0500 0100 0008	ms..............
+0x0050	 2800 1504 6175 7468 036d 7361 0661 6b61	(...auth.msa.aka
+0x0060	 646e 7303 6e65 7400 c029 0005 0001 0000	dns.net..)......
+0x0070	 0120 0016 0461 7574 6803 6766 7802 6d73	.....auth.gfx.ms
+0x0080	 0765 6467 656b 6579 c039 c04a 0005 0001	.edgekey.9.J....
+0x0090	 0000 0120 0016 0565 3735 3032 0263 650a	.......e7502.ce.
+0x00a0	 616b 616d 6169 6564 6765 c039 c06c 0001	akamaiedge.9.l..
+0x00b0	 0001 0000 000b 0004 173a a846 c072 0002	.........:.F.r..
+0x00c0	 0001 0000 050a 0007 0461 3163 65c0 75c0	.........a1ce.u.
+0x00d0	 7200 0200 0100 0005 0a00 0704 6e33 6365	r...........n3ce
+0x00e0	 c075 c072 0002 0001 0000 050a 0007 046e	.u.r...........n
+0x00f0	 3163 65c0 75c0 7200 0200 0100 0005 0a00	1ce.u.r.........
+0x0100	 0704 6e30 6365 c075 c072 0002 0001 0000	..n0ce.u.r......
+0x0110	 050a 0007 046e 3463 65c0 75c0 7200 0200	.....n4ce.u.r...
+0x0120	 0100 0005 0a00 0704 6130 6365 c075 c072	........a0ce.u.r
+0x0130	 0002 0001 0000 050a 0007 046e 3563 65c0	...........n5ce.
+0x0140	 75c0 7200 0200 0100 0005 0a00 0704 6e32	u.r...........n2
+0x0150	 6365 c075 c09e 001c 0001 0000 08dd 0010	ce.u............
+0x0160	 2600 1406 001c f000 9028 8b04 5b5f fb32	&........(..[_.2
+0x0170	 c0c4 0001 0001 0000 055c 0004 6011 902d	.........\..`..-
+0x0180	 c123 0001 0001 0000 0561 0004 3f8d c375	.#.......a..?..u
+0x0190	 c0b1 0001 0001 0000 00f2 0004 3f8d c36f	............?..o
+0x01a0	 c110 0001 0001 0000 0549 0004 6011 9028	.........I..`..(
+0x01b0	 c0fd 001c 0001 0000 1ee3 0010 2600 1406	............&...
+0x01c0	 001c f000 902c 8b04 5b5f fb32 c0d7 0001	.....,..[_.2....
+0x01d0	 0001 0000 0597 0004 c6ac 5874 c0ea 0001	..........Xt....
+0x01e0	 0001 0000 08d0 0004 c6ac 586e          	..........Xn
+
+PPP send: LCP Echo_Request id(15) len(8) [Magic_Number 37e5f667]
+PPP recv: LCP Echo_Reply id(15) len(8) [Magic_Number bf0d2dcf]
+2015-06-24 11:21:57.176569 ppp0 out 2001:470:59af:d102:20c:297c:fffe:498a -> 2001:1488:0:3::2: [icmp6 sum ok] icmp6: echo request seq 2 (len 64, hlim 64)
+0x0000	 0000 0000 0000 0000 0000 0000 86dd 6000	..............`.
+0x0010	 0000 0040 3a40 2001 0470 59af d102 020c	...@:@...pY.....
+0x0020	 297c fffe 498a 2001 1488 0000 0003 0000	)|..I...........
+0x0030	 0000 0000 0002 8000 fd22 a600 0002 d592	........."......
+0x0040	 8a55 96b1 0200 0809 0a0b 0c0d 0e0f 1011	.U..............
+0x0050	 1213 1415 1617 1819 1a1b 1c1d 1e1f 2021	...............!
+0x0060	 2223 2425 2627 2829 2a2b 2c2d 2e2f 3031	"#$%&'()*+,-./01
+0x0070	 3233 3435 3637                         	234567
+
+2015-06-24 11:21:57.202544 ppp0 in 2001:1488:0:3::2 -> 2001:470:59af:d102:20c:297c:fffe:498a: [icmp6 sum ok] icmp6: echo reply seq 2 (len 64, hlim 59)
+0x0000	 0000 0000 0001 0000 0000 0000 86dd 6000	..............`.
+0x0010	 0000 0040 3a3b 2001 1488 0000 0003 0000	...@:;..........
+0x0020	 0000 0000 0002 2001 0470 59af d102 020c	.........pY.....
+0x0030	 297c fffe 498a 8100 fc22 a600 0002 d592	)|..I...."......
+0x0040	 8a55 96b1 0200 0809 0a0b 0c0d 0e0f 1011	.U..............
+0x0050	 1213 1415 1617 1819 1a1b 1c1d 1e1f 2021	...............!
+0x0060	 2223 2425 2627 2829 2a2b 2c2d 2e2f 3031	"#$%&'()*+,-./01
+0x0070	 3233 3435 3637                         	234567
+
+2015-06-24 11:21:58.196431 ppp0 out 2001:470:59af:d102:20c:297c:fffe:498a -> 2001:1488:0:3::2: [icmp6 sum ok] icmp6: echo request seq 3 (len 64, hlim 64)
+0x0000	 0000 0000 0000 0000 0000 0000 86dd 6000	..............`.
+0x0010	 0000 0040 3a40 2001 0470 59af d102 020c	...@:@...pY.....
+0x0020	 297c fffe 498a 2001 1488 0000 0003 0000	)|..I...........
+0x0030	 0000 0000 0002 8000 65d4 a600 0003 d692	........e.......
+0x0040	 8a55 2cff 0200 0809 0a0b 0c0d 0e0f 1011	.U,.............
+0x0050	 1213 1415 1617 1819 1a1b 1c1d 1e1f 2021	...............!
+0x0060	 2223 2425 2627 2829 2a2b 2c2d 2e2f 3031	"#$%&'()*+,-./01
+0x0070	 3233 3435 3637                         	234567
+
+2015-06-24 11:21:58.222108 ppp0 in 2001:1488:0:3::2 -> 2001:470:59af:d102:20c:297c:fffe:498a: [icmp6 sum ok] icmp6: echo reply seq 3 (len 64, hlim 59)
+0x0000	 0000 0000 0001 0000 0000 0000 86dd 6000	..............`.
+0x0010	 0000 0040 3a3b 2001 1488 0000 0003 0000	...@:;..........
+0x0020	 0000 0000 0002 2001 0470 59af d102 020c	.........pY.....
+0x0030	 297c fffe 498a 8100 64d4 a600 0003 d692	)|..I...d.......
+0x0040	 8a55 2cff 0200 0809 0a0b 0c0d 0e0f 1011	.U,.............
+0x0050	 1213 1415 1617 1819 1a1b 1c1d 1e1f 2021	...............!
+0x0060	 2223 2425 2627 2829 2a2b 2c2d 2e2f 3031	"#$%&'()*+,-./01
+0x0070	 3233 3435 3637                         	234567
+
+2015-06-24 11:21:59.219372 ppp0 out 2001:470:59af:d102:20c:297c:fffe:498a -> 2001:1488:0:3::2: [icmp6 sum ok] icmp6: echo request seq 4 (len 64, hlim 64)
+0x0000	 0000 0000 0000 0000 0000 0000 86dd 6000	..............`.
+0x0010	 0000 0040 3a40 2001 0470 59af d102 020c	...@:@...pY.....
+0x0020	 297c fffe 498a 2001 1488 0000 0003 0000	)|..I...........
+0x0030	 0000 0000 0002 8000 c579 a600 0004 d792	.........y......
+0x0040	 8a55 cb58 0300 0809 0a0b 0c0d 0e0f 1011	.U.X............
+0x0050	 1213 1415 1617 1819 1a1b 1c1d 1e1f 2021	...............!
+0x0060	 2223 2425 2627 2829 2a2b 2c2d 2e2f 3031	"#$%&'()*+,-./01
+0x0070	 3233 3435 3637                         	234567
+
+2015-06-24 11:21:59.242142 ppp0 in 2001:1488:0:3::2 -> 2001:470:59af:d102:20c:297c:fffe:498a: [icmp6 sum ok] icmp6: echo reply seq 4 (len 64, hlim 59)
+0x0000	 0000 0000 0001 0000 0000 0000 86dd 6000	..............`.
+0x0010	 0000 0040 3a3b 2001 1488 0000 0003 0000	...@:;..........
+0x0020	 0000 0000 0002 2001 0470 59af d102 020c	.........pY.....
+0x0030	 297c fffe 498a 8100 c479 a600 0004 d792	)|..I....y......
+0x0040	 8a55 cb58 0300 0809 0a0b 0c0d 0e0f 1011	.U.X............
+0x0050	 1213 1415 1617 1819 1a1b 1c1d 1e1f 2021	...............!
+0x0060	 2223 2425 2627 2829 2a2b 2c2d 2e2f 3031	"#$%&'()*+,-./01
+0x0070	 3233 3435 3637                         	234567
+
+2015-06-24 11:21:59.922834 ppp0 out 10.108.236.51.56937 -> 8.8.8.8.53: udp 43
+0x0000	 0000 0000 0000 0000 0000 0000 0800 4500	..............E.
+0x0010	 0047 0258 0000 4011 719f 0a6c ec33 0808	.G.X..@.q..l.3..
+0x0020	 0808 de69 0035 0033 df12 7509 0100 0001	...i.5.3..u.....
+0x0030	 0000 0000 0000 0e73 6f66 7477 6172 6575	.......softwareu
+0x0040	 7064 6174 6506 766d 7761 7265 0363 6f6d	pdate.vmware.com
+0x0050	 0000 0100 01                           	.....
+
+2015-06-24 11:21:59.967984 ppp0 in 8.8.8.8.53 -> 10.108.236.51.56937: udp 140
+0x0000	 0000 0000 0001 0000 0000 0000 0800 4500	..............E.
+0x0010	 00a8 e14b 0000 3a11 984a 0808 0808 0a6c	...K..:..J.....l
+0x0020	 ec33 0035 de69 0094 0d2c 7509 8180 0001	.3.5.i...,u.....
+0x0030	 0003 0000 0000 0e73 6f66 7477 6172 6575	.......softwareu
+0x0040	 7064 6174 6506 766d 7761 7265 0363 6f6d	pdate.vmware.com
+0x0050	 0000 0100 01c0 0c00 0500 0100 0000 d300	................
+0x0060	 2206 6573 6437 3531 0676 6d77 6172 6503	".esd751.vmware.
+0x0070	 636f 6d02 6473 0765 6467 656b 6579 036e	com.ds.edgekey.n
+0x0080	 6574 00c0 3700 0500 0100 0000 0900 1704	et..7...........
+0x0090	 6537 3531 0464 7363 640a 616b 616d 6169	e751.dscd.akamai
+0x00a0	 6564 6765 c054 c065 0001 0001 0000 0013	edge.T.e........
+0x00b0	 0004 0210 f333                         	.....3
+
+2015-06-24 11:22:00.239085 ppp0 out 2001:470:59af:d102:20c:297c:fffe:498a -> 2001:1488:0:3::2: [icmp6 sum ok] icmp6: echo request seq 5 (len 64, hlim 64)
+0x0000	 0000 0000 0000 0000 0000 0000 86dd 6000	..............`.
+0x0010	 0000 0040 3a40 2001 0470 59af d102 020c	...@:@...pY.....
+0x0020	 297c fffe 498a 2001 1488 0000 0003 0000	)|..I...........
+0x0030	 0000 0000 0002 8000 c52b a600 0005 d892	.........+......
+0x0040	 8a55 caa5 0300 0809 0a0b 0c0d 0e0f 1011	.U..............
+0x0050	 1213 1415 1617 1819 1a1b 1c1d 1e1f 2021	...............!
+0x0060	 2223 2425 2627 2829 2a2b 2c2d 2e2f 3031	"#$%&'()*+,-./01
+0x0070	 3233 3435 3637                         	234567
+
+2015-06-24 11:22:00.262200 ppp0 in 2001:1488:0:3::2 -> 2001:470:59af:d102:20c:297c:fffe:498a: [icmp6 sum ok] icmp6: echo reply seq 5 (len 64, hlim 59)
+0x0000	 0000 0000 0001 0000 0000 0000 86dd 6000	..............`.
+0x0010	 0000 0040 3a3b 2001 1488 0000 0003 0000	...@:;..........
+0x0020	 0000 0000 0002 2001 0470 59af d102 020c	.........pY.....
+0x0030	 297c fffe 498a 8100 c42b a600 0005 d892	)|..I....+......
+0x0040	 8a55 caa5 0300 0809 0a0b 0c0d 0e0f 1011	.U..............
+0x0050	 1213 1415 1617 1819 1a1b 1c1d 1e1f 2021	...............!
+0x0060	 2223 2425 2627 2829 2a2b 2c2d 2e2f 3031	"#$%&'()*+,-./01
+0x0070	 3233 3435 3637                         	234567
+
+PPP recv: LCP Echo_Request id(8) len(8) [Magic_Number bf0d2dcf]
+PPP send: LCP Echo_Reply id(8) len(8) [Magic_Number 37e5f667]
+2015-06-24 11:22:01.594235 ppp0 out 10.108.236.51.56937 -> 8.8.4.4.53: udp 29
+0x0000	 0000 0000 0000 0000 0000 0000 0800 4500	..............E.
+0x0010	 0039 9264 0000 4011 e5a4 0a6c ec33 0808	.9.d..@....l.3..
+0x0020	 0404 de69 0035 0025 ddd4 0ecf 0100 0001	...i.5.%........
+0x0030	 0000 0000 0000 0461 7574 6803 6766 7802	.......auth.gfx.
+0x0040	 6d73 0000 0100 01                      	ms.....
+
+2015-06-24 11:22:01.638250 ppp0 in 8.8.4.4.53 -> 10.108.236.51.56937: udp 146
+0x0000	 0000 0000 0001 0000 0000 0000 0800 4500	..............E.
+0x0010	 00ae 2c32 0000 3a11 5162 0808 0404 0a6c	..,2..:.Qb.....l
+0x0020	 ec33 0035 de69 009a f41d 0ecf 8180 0001	.3.5.i..........
+0x0030	 0004 0000 0000 0461 7574 6803 6766 7802	.......auth.gfx.
+0x0040	 6d73 0000 0100 01c0 0c00 0500 0100 000c	ms..............
+0x0050	 0b00 1504 6175 7468 036d 7361 0661 6b61	....auth.msa.aka
+0x0060	 646e 7303 6e65 7400 c029 0005 0001 0000	dns.net..)......
+0x0070	 012b 0016 0461 7574 6803 6766 7802 6d73	.+...auth.gfx.ms
+0x0080	 0765 6467 656b 6579 c039 c04a 0005 0001	.edgekey.9.J....
+0x0090	 0000 0039 0016 0565 3735 3032 0263 650a	...9...e7502.ce.
+0x00a0	 616b 616d 6169 6564 6765 c039 c06c 0001	akamaiedge.9.l..
+0x00b0	 0001 0000 0013 0004 1735 b846          	.........5.F
+
+PPP send: LCP Echo_Request id(16) len(8) [Magic_Number 37e5f667]
+PPP recv: LCP Echo_Reply id(16) len(8) [Magic_Number bf0d2dcf]
+2015-06-24 11:22:03.361739 ppp0 out 10.108.236.51 -> 4.2.2.1: icmp: echo request
+0x0000	 0000 0000 0000 0000 0000 0000 0800 4500	..............E.
+0x0010	 0054 b966 0000 4001 c4a0 0a6c ec33 0402	.T.f..@....l.3..
+0x0020	 0201 0800 b092 0300 0000 db92 8a55 d984	.............U..
+0x0030	 0500 0000 0000 0000 0000 0000 0000 0000	................
+0x0040	 0000 0000 0000 0000 0000 0000 0000 0000	................
+0x0050	 0000 0000 0000 0000 0000 0000 0000 0000	................
+0x0060	 0000                                   	..
+
+2015-06-24 11:22:03.382269 ppp0 in 4.2.2.1 -> 10.108.236.51: icmp: echo reply
+0x0000	 0000 0000 0001 0000 0000 0000 0800 4500	..............E.
+0x0010	 0054 dc56 0000 3601 abb0 0402 0201 0a6c	.T.V..6........l
+0x0020	 ec33 0000 b892 0300 0000 db92 8a55 d984	.3...........U..
+0x0030	 0500 0000 0000 0000 0000 0000 0000 0000	................
+0x0040	 0000 0000 0000 0000 0000 0000 0000 0000	................
+0x0050	 0000 0000 0000 0000 0000 0000 0000 0000	................
+0x0060	 0000                                   	..
+
+2015-06-24 11:22:04.361789 ppp0 out 10.108.236.51 -> 4.2.2.1: icmp: echo request
+0x0000	 0000 0000 0000 0000 0000 0000 0800 4500	..............E.
+0x0010	 0054 b967 0000 4001 c49f 0a6c ec33 0402	.T.g..@....l.3..
+0x0020	 0201 0800 6a92 0300 0100 dc92 8a55 1d85	....j........U..
+0x0030	 0500 0000 0000 0000 0000 0000 0000 0000	................
+0x0040	 0000 0000 0000 0000 0000 0000 0000 0000	................
+0x0050	 0000 0000 0000 0000 0000 0000 0000 0000	................
+0x0060	 0000                                   	..
+
+2015-06-24 11:22:04.382110 ppp0 in 4.2.2.1 -> 10.108.236.51: icmp: echo reply
+0x0000	 0000 0000 0001 0000 0000 0000 0800 4500	..............E.
+0x0010	 0054 dc57 0000 3601 abaf 0402 0201 0a6c	.T.W..6........l
+0x0020	 ec33 0000 7292 0300 0100 dc92 8a55 1d85	.3..r........U..
+0x0030	 0500 0000 0000 0000 0000 0000 0000 0000	................
+0x0040	 0000 0000 0000 0000 0000 0000 0000 0000	................
+0x0050	 0000 0000 0000 0000 0000 0000 0000 0000	................
+0x0060	 0000                                   	..
+
+2015-06-24 11:22:04.974385 ppp0 out 10.108.236.51.56937 -> 10.108.3.18.53: udp 43
+0x0000	 0000 0000 0000 0000 0000 0000 0800 4500	..............E.
+0x0010	 0047 4879 0000 4011 2e10 0a6c ec33 0a6c	.GHy..@....l.3.l
+0x0020	 0312 de69 0035 0033 213b 3573 0100 0001	...i.5.3!;5s....
+0x0030	 0000 0000 0000 0e73 6f66 7477 6172 6575	.......softwareu
+0x0040	 7064 6174 6506 766d 7761 7265 0363 6f6d	pdate.vmware.com
+0x0050	 0000 0100 01                           	.....
+
+2015-06-24 11:22:05.364825 ppp0 out 10.108.236.51 -> 4.2.2.1: icmp: echo request
+0x0000	 0000 0000 0000 2020 2020 2020 0800 4500	..............E.
+0x0010	 0054 b968 0000 4001 c49e 0a6c ec33 0402	.T.h..@....l.3..
+0x0020	 0201 0800 8c86 0300 0200 dd92 8a55 f990	.............U..
+0x0030	 0500 0000 0000 0000 0000 0000 0000 0000	................
+0x0040	 0000 0000 0000 0000 0000 0000 0000 0000	................
+0x0050	 0000 0000 0000 0000 0000 0000 0000 0000	................
+0x0060	 0000                                   	..
+
+2015-06-24 11:22:05.386465 ppp0 in 4.2.2.1 -> 10.108.236.51: icmp: echo reply
+0x0000	 0000 0000 0001 0000 0000 0000 0800 4500	..............E.
+0x0010	 0054 dc58 0000 3601 abae 0402 0201 0a6c	.T.X..6........l
+0x0020	 ec33 0000 9486 0300 0200 dd92 8a55 f990	.3...........U..
+0x0030	 0500 0000 0000 0000 0000 0000 0000 0000	................
+0x0040	 0000 0000 0000 0000 0000 0000 0000 0000	................
+0x0050	 0000 0000 0000 0000 0000 0000 0000 0000	................
+0x0060	 0000                                   	..
+
+2015-06-24 11:22:06.364393 ppp0 out 10.108.236.51 -> 4.2.2.1: icmp: echo request
+0x0000	 0000 0000 0000 0000 0000 0000 0800 4500	..............E.
+0x0010	 0054 b969 0000 4001 c49d 0a6c ec33 0402	.T.i..@....l.3..
+0x0020	 0201 0800 3c88 0300 0300 de92 8a55 478f	....<........UG.
+0x0030	 0500 0000 0000 0000 0000 0000 0000 0000	................
+0x0040	 0000 0000 0000 0000 0000 0000 0000 0000	................
+0x0050	 0000 0000 0000 0000 0000 0000 0000 0000	................
+0x0060	 0000                                   	..
+
+2015-06-24 11:22:06.386173 ppp0 in 4.2.2.1 -> 10.108.236.51: icmp: echo reply
+0x0000	 0000 0000 0001 0000 0000 0000 0800 4500	..............E.
+0x0010	 0054 dc5a 0000 3601 abac 0402 0201 0a6c	.T.Z..6........l
+0x0020	 ec33 0000 4488 0300 0300 de92 8a55 478f	.3..D........UG.
+0x0030	 0500 0000 0000 0000 0000 0000 0000 0000	................
+0x0040	 0000 0000 0000 0000 0000 0000 0000 0000	................
+0x0050	 0000 0000 0000 0000 0000 0000 0000 0000	................
+0x0060	 0000                                   	..
+
+2015-06-24 11:22:06.632511 ppp0 out 10.108.236.51.56937 -> 208.91.112.52.53: udp 29
+0x0000	 0000 0000 0000 0000 0000 0000 0800 4500	..............E.
+0x0010	 0039 ae2e 0000 4011 9556 0a6c ec33 d05b	.9....@..V.l.3.[
+0x0020	 7034 de69 0035 0025 c5b4 f26a 0100 0001	p4.i.5.%...j....
+0x0030	 0000 0000 0000 0461 7574 6803 6766 7802	.......auth.gfx.
+0x0040	 6d73 0000 0100 01                      	ms.....
+
+PPP send: LCP Echo_Request id(17) len(8) [Magic_Number 37e5f667]
+PPP recv: LCP Echo_Reply id(17) len(8) [Magic_Number bf0d2dcf]
+2015-06-24 11:22:06.822048 ppp0 in 208.91.112.52.53 -> 10.108.236.51.56937: udp 450
+0x0000	 0000 0000 0001 0000 0000 0000 0800 4500	..............E.
+0x0010	 01de c328 0000 3011 8eb7 d05b 7034 0a6c	...(..0....[p4.l
+0x0020	 ec33 0035 de69 01ca 9581 f26a 8180 0001	.3.5.i.....j....
+0x0030	 0004 0008 0008 0461 7574 6803 6766 7802	.......auth.gfx.
+0x0040	 6d73 0000 0100 01c0 0c00 0500 0100 0008	ms..............
+0x0050	 1e00 1504 6175 7468 036d 7361 0661 6b61	....auth.msa.aka
+0x0060	 646e 7303 6e65 7400 c029 0005 0001 0000	dns.net..)......
+0x0070	 0116 0016 0461 7574 6803 6766 7802 6d73	.....auth.gfx.ms
+0x0080	 0765 6467 656b 6579 c039 c04a 0005 0001	.edgekey.9.J....
+0x0090	 0000 0116 0016 0565 3735 3032 0263 650a	.......e7502.ce.
+0x00a0	 616b 616d 6169 6564 6765 c039 c06c 0001	akamaiedge.9.l..
+0x00b0	 0001 0000 0001 0004 173a a846 c072 0002	.........:.F.r..
+0x00c0	 0001 0000 0500 0007 046e 3363 65c0 75c0	.........n3ce.u.
+0x00d0	 7200 0200 0100 0005 0000 0704 6e30 6365	r...........n0ce
+0x00e0	 c075 c072 0002 0001 0000 0500 0007 0461	.u.r...........a
+0x00f0	 3163 65c0 75c0 7200 0200 0100 0005 0000	1ce.u.r.........
+0x0100	 0704 6e34 6365 c075 c072 0002 0001 0000	..n4ce.u.r......
+0x0110	 0500 0007 0461 3063 65c0 75c0 7200 0200	.....a0ce.u.r...
+0x0120	 0100 0005 0000 0704 6e31 6365 c075 c072	........n1ce.u.r
+0x0130	 0002 0001 0000 0500 0007 046e 3263 65c0	...........n2ce.
+0x0140	 75c0 7200 0200 0100 0005 0000 0704 6e35	u.r...........n5
+0x0150	 6365 c075 c0c4 001c 0001 0000 08d3 0010	ce.u............
+0x0160	 2600 1406 001c f000 9028 8b04 5b5f fb32	&........(..[_.2
+0x0170	 c0fd 0001 0001 0000 0552 0004 6011 902d	.........R..`..-
+0x0180	 c110 0001 0001 0000 0557 0004 3f8d c375	.........W..?..u
+0x0190	 c09e 0001 0001 0000 00e8 0004 3f8d c36f	............?..o
+0x01a0	 c123 0001 0001 0000 053f 0004 6011 9028	.#.......?..`..(
+0x01b0	 c0ea 001c 0001 0000 1ed9 0010 2600 1406	............&...
+0x01c0	 001c f000 902c 8b04 5b5f fb32 c0b1 0001	.....,..[_.2....
+0x01d0	 0001 0000 058d 0004 c6ac 5874 c0d7 0001	..........Xt....
+0x01e0	 0001 0000 08c6 0004 c6ac 586e          	..........Xn
+
+2015-06-24 11:22:07.074351 ppp0 out 10.108.236.51.56937 -> 8.8.8.8.53: udp 34
+0x0000	 0000 0000 0000 0000 0000 0000 0800 4500	..............E.
+0x0010	 003e 0259 0000 4011 71a7 0a6c ec33 0808	.>.Y..@.q..l.3..
+0x0020	 0808 de69 0035 002a c22d 2784 0100 0001	...i.5.*.-'.....
+0x0030	 0000 0000 0000 0461 7573 2a07 6d6f 7a69	.......aus*.mozi
+0x0040	 6c6c 6103 6f72 6700 0001 0001          	lla.org.....
+
+2015-06-24 11:22:07.082140 ppp0 in 8.8.8.8.53 -> 10.108.236.51.56937: udp 83
+0x0000	 0000 0000 0001 0000 0000 0000 0800 4500	..............E.
+0x0010	 006f f3b2 0000 3a11 861c 0808 0808 0a6c	.o....:........l
+0x0020	 ec33 0035 de69 005b cb51 2784 8183 0001	.3.5.i.[.Q'.....
+0x0030	 0000 0001 0000 0461 7573 2a07 6d6f 7a69	.......aus*.mozi
+0x0040	 6c6c 6103 6f72 6700 0001 0001 c011 0006	lla.org.........
+0x0050	 0001 0000 06b1 0025 026e 73c0 1109 7379	.......%.ns...sy
+0x0060	 7361 646d 696e 73c0 1178 1b69 1c00 0000	sadmins..x.i....
+0x0070	 b400 0000 b400 1275 0000 0000 3c       	.......u....<
+
+2015-06-24 11:22:07.363978 ppp0 out 10.108.236.51 -> 4.2.2.1: icmp: echo request
+0x0000	 0000 0000 0000 0000 0000 0000 0800 4500	..............E.
+0x0010	 0054 b96a 0000 4001 c49c 0a6c ec33 0402	.T.j..@....l.3..
+0x0020	 0201 0800 168a 0300 0400 df92 8a55 6b8d	.............Uk.
+0x0030	 0500 0000 0000 0000 0000 0000 0000 0000	................
+0x0040	 0000 0000 0000 0000 0000 0000 0000 0000	................
+0x0050	 0000 0000 0000 0000 0000 0000 0000 0000	................
+0x0060	 0000                                   	..
+
+2015-06-24 11:22:07.386283 ppp0 in 4.2.2.1 -> 10.108.236.51: icmp: echo reply
+0x0000	 0000 0000 0001 0000 0000 0000 0800 4500	..............E.
+0x0010	 0054 dc5b 0000 3601 abab 0402 0201 0a6c	.T.[..6........l
+0x0020	 ec33 0000 1e8a 0300 0400 df92 8a55 6b8d	.3...........Uk.
+0x0030	 0500 0000 0000 0000 0000 0000 0000 0000	................
+0x0040	 0000 0000 0000 0000 0000 0000 0000 0000	................
+0x0050	 0000 0000 0000 0000 0000 0000 0000 0000	................
+0x0060	 0000                                   	..
+
+
+32 packets received by filter
+0 packets dropped by kernel
+
+FGVM010000018426 # ^Dexit
+Connection to 10.108.16.72 closed.
+]0;oho@chaos: ~/miniprojects/sniftranoho@chaos:~/miniprojects/sniftran$ exit
+
+Script done on Wed 24 Jun 2015 01:22:09 PM CEST
