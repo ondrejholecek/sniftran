@@ -2,7 +2,7 @@
 
 # BSD 3-Clause License
 # 
-# Copyright (c) 2015, Ondrej Holecek <ondrej at holecek dot eu>
+# Copyright (c) 2015 - 2022, Ondrej Holecek <ondrej at holecek dot eu>
 # All rights reserved.
 # 
 # Redistribution and use in source and binary forms, with or without
@@ -82,8 +82,11 @@ class PacketParser:
 			self.packetLine = re.compile("^0x[0-9a-f]{4}[ \t]")
 			self.packetLineParser = re.compile("^(0x)([0-9a-f]{4})[ \t]*([0-9a-f ]*)[ \t][ \t]*")
 
-		self.headerLineTimeAbsolute = re.compile("^([0-9]{4})-(\d\d)-(\d\d) (\d\d):(\d\d):(\d\d)\.([0-9]*) ")
-		self.headerLineTimeRelative = re.compile("^([0-9]*)\.([0-9]*)[ \t]")
+		#self.headerLineTimeAbsolute = re.compile("^([0-9]{4})-(\d\d)-(\d\d) (\d\d):(\d\d):(\d\d)\.([0-9]*) ")
+		#self.headerLineTimeRelative = re.compile("^([0-9]*)\.([0-9]*)[ \t]")
+		# 20220823: recognize 6k7k prefix
+		self.headerLineTimeAbsolute = re.compile("^(?:\[(.*)\s*\]\s+)?([0-9]{4})-(\d\d)-(\d\d) (\d\d):(\d\d):(\d\d)\.([0-9]*) ")
+		self.headerLineTimeRelative = re.compile("^(?:\[(.*)\s*\]\s+)?([0-9]*)\.([0-9]*)[ \t]")
 		self.headerLineIface = re.compile("^([^ ]*) ([^ ]*) ")
 
 		self.ds = datasource
@@ -156,6 +159,7 @@ class PacketParser:
 
 	def parseHeaderLine(self, line):
 		ts = 0
+		slot = None # for chassis 6k7k
 		iface = "unknown"
 		direction = "unknown"
 
@@ -163,13 +167,14 @@ class PacketParser:
 		while True:
 			g = self.headerLineTimeAbsolute.search(line)
 			if g:
-				year = int(g.group(1))
-				month = int(g.group(2))
-				day = int(g.group(3))
-				hour = int(g.group(4))
-				minute = int(g.group(5))
-				second = int(g.group(6))
-				msec = int(g.group(7))
+				slot = g.group(1)
+				year = int(g.group(2))
+				month = int(g.group(3))
+				day = int(g.group(4))
+				hour = int(g.group(5))
+				minute = int(g.group(6))
+				second = int(g.group(7))
+				msec = int(g.group(8))
 
 				line = line[len(g.group(0)):]
 	
@@ -184,8 +189,9 @@ class PacketParser:
 			if g:
 				line = line[len(g.group(0)):]
 
-				ts = int(g.group(1))
-				us = int(g.group(2))
+				slot = g.group(1)
+				ts = int(g.group(2))
+				us = int(g.group(3))
 				break
 
 			# if we've exhausted all options...
@@ -204,6 +210,10 @@ class PacketParser:
 			# if we've exhausted all options...
 			print "WARNING: cannot recognize interface and/or direction format"
 			break
+
+		# if this is 6k7k blade, prefix interface with blade name
+		if slot != None:
+			iface = slot + "/" + iface
 
 		#print (ts, us, iface, direction)
 		return (ts, us, iface, direction)
