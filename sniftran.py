@@ -238,6 +238,7 @@ class PacketAssembler:
 				else: 
 					print("WARNING: packet decoder problem occurred on line %i, packet ignored" % (self.pp.debug_linesRead))
 					if stop_on_error: raise
+					continue
 
 			if EOF or (offset == 0):  # extract the old packet
 				if len(self.packetLines) > 0: 
@@ -391,7 +392,7 @@ class PcapNGWriter:
 
 		block = struct.pack(">H", code)
 		block += struct.pack(">H", len(value))
-		block += value
+		block += str.encode(value)
 		for i in range(valuePad): block += struct.pack(">b", 0)
 		return block
 
@@ -803,7 +804,7 @@ def process():
 	
 	
 	ifaces_blocks = {}   # holds reusable block of interfaces - key is the index in pcap
-	ifaces_block = ""
+	ifaces_block = b""
 	ifaces = set() # holds all known interfaces
 	
 	packets_assembled = 0
