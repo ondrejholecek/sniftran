@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 
 # BSD 3-Clause License
 # 
@@ -195,7 +195,7 @@ class PacketParser:
 				break
 
 			# if we've exhausted all options...
-			print "WARNING: cannot recognize time format"
+			print("WARNING: cannot recognize time format")
 			break
 
 		# then find the interface and direction
@@ -208,7 +208,7 @@ class PacketParser:
 				break # to prevent the next (possible) check 
 
 			# if we've exhausted all options...
-			print "WARNING: cannot recognize interface and/or direction format"
+			print("WARNING: cannot recognize interface and/or direction format")
 			break
 
 		# if this is 6k7k blade, prefix interface with blade name
@@ -233,11 +233,12 @@ class PacketAssembler:
 		while True:
 			try:
 				(offset, content, additional) = self.pp.getPacketLine()
-			except Exception, e:
+			except Exception as e:
 				if str(e) == "end of file": EOF = True
 				else: 
-					print "WARNING: packet decoder problem occurred on line %i, packet ignored" % (self.pp.debug_linesRead)
+					print("WARNING: packet decoder problem occurred on line %i, packet ignored" % (self.pp.debug_linesRead))
 					if stop_on_error: raise
+					continue
 
 			if EOF or (offset == 0):  # extract the old packet
 				if len(self.packetLines) > 0: 
@@ -295,13 +296,13 @@ class PcapNGWriter:
 			if self.max_in_file == None:
 				# when amount of packets in file is unlimited, we have as many slots as we need
 				slots_free = len(blockPackets[packet_index:])
-				if debug >= 2: print "DEBUG: amount of packets in file is unlimited, packets to save: %i, file already contains: %i, free slots: %i" % (
-				                     len(blockPackets[packet_index:]), self.f_packet_count, slots_free,)
+				if debug >= 2: print("DEBUG: amount of packets in file is unlimited, packets to save: %i, file already contains: %i, free slots: %i" % (
+				                     len(blockPackets[packet_index:]), self.f_packet_count, slots_free,))
 			else:
 				# otherwise we need to be more cautious
 				slots_free = self.max_in_file - self.f_packet_count
-				if debug >= 2: print "DEBUG: amount of packets in file is limited to %i, packets to save: %i, file already contains: %i, free slots current cycle: %i" % (
-				                     self.max_in_file, len(blockPackets[packet_index:]), self.f_packet_count, slots_free,)
+				if debug >= 2: print("DEBUG: amount of packets in file is limited to %i, packets to save: %i, file already contains: %i, free slots current cycle: %i" % (
+				                     self.max_in_file, len(blockPackets[packet_index:]), self.f_packet_count, slots_free,))
 
 			if slots_free == 0:
 				# we need to write packets, but there are not slots in the file
@@ -310,12 +311,12 @@ class PcapNGWriter:
 
 				if self.f_file_count == 1: # if this was the first, original, file, rename it to the split format
 					newname = "%s.part%03i%s" % (self.output_file_base, 1, self.output_file_suffix)
-					if debug >= 1: print "DEBUG: renaming original output file '%s' to '%s'" % (self.f_current, newname,)
+					if debug >= 1: print("DEBUG: renaming original output file '%s' to '%s'" % (self.f_current, newname,))
 					os.rename(self.f_current, newname)
 
 				self.f_file_count += 1
 				self.f_current = "%s.part%03i%s" % (self.output_file_base, self.f_file_count, self.output_file_suffix)
-				if debug >= 1: print "DEBUG: opening new output file '%s'" % (self.f_current,)
+				if debug >= 1: print("DEBUG: opening new output file '%s'" % (self.f_current,))
 				self.f = open(self.f_current, "wb")
 
 				# reset the packet count as we have a new file
@@ -336,7 +337,7 @@ class PcapNGWriter:
 
 			self.f.write(block)
 			self.f_packet_count += len(blockPackets[packet_index:packet_index+slots_free])
-			if debug >= 3: print "DEBUG: written %i packets, %i bytes to the current output file, now the file contains: %i" % (len(blockPackets[packet_index:packet_index+slots_free]), len(block), self.f_packet_count)
+			if debug >= 3: print("DEBUG: written %i packets, %i bytes to the current output file, now the file contains: %i" % (len(blockPackets[packet_index:packet_index+slots_free]), len(block), self.f_packet_count))
 
 			packet_index += len(blockPackets[packet_index:packet_index+slots_free])
 
@@ -391,7 +392,7 @@ class PcapNGWriter:
 
 		block = struct.pack(">H", code)
 		block += struct.pack(">H", len(value))
-		block += value
+		block += str.encode(value)
 		for i in range(valuePad): block += struct.pack(">b", 0)
 		return block
 
@@ -421,7 +422,7 @@ class IPSec:
 		else:
 			self.wireshark_config = None
 			if debug >= 1:
-				print "DEBUG: unknown wireshark esp config file, ignoring"
+				print("DEBUG: unknown wireshark esp config file, ignoring")
 	
 	def find_tunnels(self):
 		if not self.wireshark_config: return
@@ -465,19 +466,19 @@ class IPSec:
 		
 				# first line is encryption
 				if "spi=" != ls[1][:4]:
-					print "WARNING: ignoring \"%s\" direction for tunnel \"%s\" because of unknown line format (spi)" % (direction, current,)
+					print("WARNING: ignoring \"%s\" direction for tunnel \"%s\" because of unknown line format (spi)" % (direction, current,))
 					self.tunnels[current]['ignore'] = True
 				else:
 					spi = ls[1][4:]
 		
 				if "esp=" != ls[2][:4]:
-					print "WARNING: ignoring \"%s\" direction for tunnel \"%s\" because of unknown line format (esp)\n" % (direction, current,)
+					print("WARNING: ignoring \"%s\" direction for tunnel \"%s\" because of unknown line format (esp)\n" % (direction, current,))
 					self.tunnels[current]['ignore'] = True
 				else:
 					esp = ls[2][4:]
 		
 				if "key=" != ls[3][:4]:
-					print "WARNING: ignoring \"%s\" direction for tunnel \"%s\" because of unknown line format (keylength)\n" % (direction, current,)
+					print("WARNING: ignoring \"%s\" direction for tunnel \"%s\" because of unknown line format (keylength)\n" % (direction, current,))
 					self.tunnels[current]['ignore'] = True
 				else:
 					keylength = ls[3][4:]
@@ -485,19 +486,19 @@ class IPSec:
 				try:
 					key = ls[4]
 				except:
-					print "WARNING: ignoring \"%s\" direction for tunnel \"%s\" because of unknown line format (key)\n" % (direction, current,)
+					print("WARNING: ignoring \"%s\" direction for tunnel \"%s\" because of unknown line format (key)\n" % (direction, current,))
 					self.tunnels[current]['ignore'] = True
 		
 				# next line should be authentication
 				auth = fd.readline().strip().split()
 				if "ah=" != auth[0][:3]:
-					print "WARNING: ignoring \"%s\" direction for tunnel \"%s\" because of unknown line format (ah)\n" % (direction, current,)
+					print("WARNING: ignoring \"%s\" direction for tunnel \"%s\" because of unknown line format (ah)\n" % (direction, current,))
 					self.tunnels[current]['ignore'] = True
 				else:
 					authalg = auth[0][3:]
 		
 				if "key=" != auth[1][:4]:
-					print "WARNING: ignoring \"%s\" direction for tunnel \"%s\" because of unknown line format (authkeylength)\n" % (direction, current,)
+					print("WARNING: ignoring \"%s\" direction for tunnel \"%s\" because of unknown line format (authkeylength)\n" % (direction, current,))
 					self.tunnels[current]['ignore'] = True
 				else:
 					authkeylength = auth[1][4:]
@@ -505,7 +506,7 @@ class IPSec:
 				try:
 					authkey = auth[2]
 				except:
-					print "WARNING: ignoring \"%s\" direction for tunnel \"%s\" because of unknown line format (authkey)\n" % (direction, current,)
+					print("WARNING: ignoring \"%s\" direction for tunnel \"%s\" because of unknown line format (authkey)\n" % (direction, current,))
 					self.tunnels[current]['ignore'] = True
 		
 				self.tunnels[current][direction] = {}
@@ -532,7 +533,7 @@ class IPSec:
 		outfile = self.wireshark_config
 		if not outfile: return
 
-		for tunnel in self.tunnels.keys():
+		for tunnel in list(self.tunnels.keys()):
 			if 'ignore' in self.tunnels[tunnel] and self.tunnels[tunnel]['ignore']:
 				# there was something wrong with this tunnel...
 				continue
@@ -541,7 +542,7 @@ class IPSec:
 				# cyphers
 				cipher = (self.tunnels[tunnel][direction]['alg'], self.tunnels[tunnel][direction]['keylength'])
 				if cipher not in self.cipher_map:
-					print "WARNING: ignoring \"%s\" direction for tunnel \"%s\" because of unknown cipher (%s, %s)\n" % (direction, tunnel, cipher[0], cipher[1],)
+					print("WARNING: ignoring \"%s\" direction for tunnel \"%s\" because of unknown cipher (%s, %s)\n" % (direction, tunnel, cipher[0], cipher[1],))
 					continue
 				else:
 					ws_alg = self.cipher_map[cipher]
@@ -549,7 +550,7 @@ class IPSec:
 				# hashes
 				hashish = (self.tunnels[tunnel][direction]['authalg'], self.tunnels[tunnel][direction]['authkeylength'])
 				if hashish not in self.hash_map:
-					print "WARNING: ignoring \"%s\" direction for tunnel \"%s\" because of unknown hash (%s, %s)\n" % (direction, tunnel, hashish[0], hashish[1],)
+					print("WARNING: ignoring \"%s\" direction for tunnel \"%s\" because of unknown hash (%s, %s)\n" % (direction, tunnel, hashish[0], hashish[1],))
 					continue
 				else:
 					ws_authalg = self.hash_map[hashish]
@@ -688,7 +689,7 @@ def readOptions():
 						  "no-wireshark-ipsec",
 						  "debug=", "show-packets", "show-timestamps", "stop-on-error", "include-packet-line", "progress"])
 	except getopt.GetoptError as err:
-		print str(err) # will print something like "option -a not recognized"
+		print(str(err)) # will print something like "option -a not recognized"
 		usage()
 		sys.exit(1)
 
@@ -761,39 +762,39 @@ def readOptions():
 	
 	# if debug is enabled, show all parameters that we use
 	if debug >= 1:
-		print "DEBUG: SnifTran version: $Id: sniftran.py 33 2016-05-04 09:03:15Z oholecek $"
-		print "DEBUG: parameters in use:"
-		print "DEBUG:   input file: %s" % (input_file,)
-		print "DEBUG:   output file: %s" % (output_file,)
-		print "DEBUG:   allow output file overwrite: %s" % (overwrite,)
-		print "DEBUG:   FE and FAD compatibility mode: %s" % (compat_mode,)
-		print "DEBUG:   skip packets: %i" % (skip_packets,)
-		if limit_packets: print "DEBUG:   limit packets: %i" % (limit_packets,)
-		else: print "DEBUG:   limit packets: unlimited"
-		print "DEBUG:   integrity checks: \"packet size\"=%s" % (check_packet_size,)
-		print "DEBUG:   normalize lines: %s" % (normalize_lines,)
-		print "DEBUG:   include interfaces: \"%s\"" % ("\", \"".join(interfaces_include),)
-		print "DEBUG:   exclude interfaces: \"%s\"" % ("\", \"".join(interfaces_exclude),)
-		print "DEBUG:   p2p interfaces: \"%s\"" % ("\", \"".join(interfaces_ptp),)
-		print "DEBUG:   nolink interfaces: \"%s\"" % ("\", \"".join(interfaces_nolink),)
-		if section_size: print "DEBUG:   section size: %i" % (section_size,)
-		else: print "DEBUG:   section size: unlimited"
-		if max_packets_in_file: print "DEBUG:   max packets in file: %i" % (max_packets_in_file,)
-		else: print "DEBUG:   max packets in file: unlimited"
-		print "DEBUG:   debug level: %i" % (debug,)
-		print "DEBUG:   show packets: %s" % (show_packets,)
-		print "DEBUG:   show timestamps: %s" % (show_timestamps,)
-		print "DEBUG:   process ipsec for wireshark: %s" % (wireshark_ipsec,)
-		print "DEBUG:   stop on error: %s" % (stop_on_error,)
-		print "DEBUG:   include packet line: %s" % (include_packet_line,)
-		print "DEBUG:   show progress: %s" % (show_progress,)
+		print("DEBUG: SnifTran version: $Id: sniftran.py 33 2016-05-04 09:03:15Z oholecek $")
+		print("DEBUG: parameters in use:")
+		print("DEBUG:   input file: %s" % (input_file,))
+		print("DEBUG:   output file: %s" % (output_file,))
+		print("DEBUG:   allow output file overwrite: %s" % (overwrite,))
+		print("DEBUG:   FE and FAD compatibility mode: %s" % (compat_mode,))
+		print("DEBUG:   skip packets: %i" % (skip_packets,))
+		if limit_packets: print("DEBUG:   limit packets: %i" % (limit_packets,))
+		else: print("DEBUG:   limit packets: unlimited")
+		print("DEBUG:   integrity checks: \"packet size\"=%s" % (check_packet_size,))
+		print("DEBUG:   normalize lines: %s" % (normalize_lines,))
+		print("DEBUG:   include interfaces: \"%s\"" % ("\", \"".join(interfaces_include),))
+		print("DEBUG:   exclude interfaces: \"%s\"" % ("\", \"".join(interfaces_exclude),))
+		print("DEBUG:   p2p interfaces: \"%s\"" % ("\", \"".join(interfaces_ptp),))
+		print("DEBUG:   nolink interfaces: \"%s\"" % ("\", \"".join(interfaces_nolink),))
+		if section_size: print("DEBUG:   section size: %i" % (section_size,))
+		else: print("DEBUG:   section size: unlimited")
+		if max_packets_in_file: print("DEBUG:   max packets in file: %i" % (max_packets_in_file,))
+		else: print("DEBUG:   max packets in file: unlimited")
+		print("DEBUG:   debug level: %i" % (debug,))
+		print("DEBUG:   show packets: %s" % (show_packets,))
+		print("DEBUG:   show timestamps: %s" % (show_timestamps,))
+		print("DEBUG:   process ipsec for wireshark: %s" % (wireshark_ipsec,))
+		print("DEBUG:   stop on error: %s" % (stop_on_error,))
+		print("DEBUG:   include packet line: %s" % (include_packet_line,))
+		print("DEBUG:   show progress: %s" % (show_progress,))
 
 
 def process():
 	#timestamp_start = int (datetime.datetime.now().strftime("%s"))
 	# the above expression does not work on Windows :(
 	timestamp_start = int(time.mktime(datetime.datetime.now().timetuple()))
-	if show_timestamps: print "DEBUG: processing started at %i, referred as T" % (timestamp_start,)
+	if show_timestamps: print("DEBUG: processing started at %i, referred as T" % (timestamp_start,))
 
 	ds = DataSource_File(input_file)
 
@@ -803,7 +804,7 @@ def process():
 	
 	
 	ifaces_blocks = {}   # holds reusable block of interfaces - key is the index in pcap
-	ifaces_block = ""
+	ifaces_block = b""
 	ifaces = set() # holds all known interfaces
 	
 	packets_assembled = 0
@@ -814,10 +815,10 @@ def process():
 		eof = False
 	
 		# first assemble preconfigured amount of packets
-		if debug >= 2: print "DEBUG: assembling packets from input file"
+		if debug >= 2: print("DEBUG: assembling packets from input file")
 		if show_timestamps: 
 			timestart_start_assembling = int(time.mktime(datetime.datetime.now().timetuple()))
-			print "DEBUG: assembling started at %i, T+%i" % (timestart_start_assembling, timestart_start_assembling-timestamp_start)
+			print("DEBUG: assembling started at %i, T+%i" % (timestart_start_assembling, timestart_start_assembling-timestamp_start))
 
 		packets_assembled_in_section = 0
 		while True:
@@ -826,7 +827,7 @@ def process():
 			eof = not pc.assemblePacket()
 			packets_assembled += 1
 			packets_assembled_in_section += 1
-			if (debug >= 3) and (packets_assembled % 10000 == 0): print "DEBUG: assembled %i packets" % (packets_assembled,)
+			if (debug >= 3) and (packets_assembled % 10000 == 0): print("DEBUG: assembled %i packets" % (packets_assembled,))
 
 			# display progress if requested
 			if show_progress and packets_assembled % 1000 == 0: 
@@ -838,7 +839,7 @@ def process():
 					progress_last = progress_current
 	
 			if eof: break
-		if debug >= 2: print "DEBUG: assembled %i packets totally, %i in current section" % (packets_assembled, packets_assembled_in_section,)
+		if debug >= 2: print("DEBUG: assembled %i packets totally, %i in current section" % (packets_assembled, packets_assembled_in_section,))
 		
 		# then go through all of them, and
 		# - extract the interface name (to see whenther we need to define a new iface in pcap)
@@ -846,10 +847,10 @@ def process():
 		current_ifaces = set()  # holds a set of interfaces used in this part of the capture
 		binary_packets = []
 	
-		if debug >= 2: print "DEBUG: reading packets"
+		if debug >= 2: print("DEBUG: reading packets")
 		if show_timestamps: 
 			timestart_start_reading = int(time.mktime(datetime.datetime.now().timetuple()))
-			print "DEBUG: reading started at %i, T+%i" % (timestart_start_reading, timestart_start_reading-timestamp_start)
+			print("DEBUG: reading started at %i, T+%i" % (timestart_start_reading, timestart_start_reading-timestamp_start))
 
 		packets_read_in_section = 0
 		while True:
@@ -869,17 +870,17 @@ def process():
 				binary_packets.append( (iface, timestamp, comment, packetBytes,) )
 				packets_read += 1
 				packets_read_in_section += 1
-				if (debug >= 3) and (packets_read % 10000 == 0): print "DEBUG: prepared %i packets" % (packets_read,)
+				if (debug >= 3) and (packets_read % 10000 == 0): print("DEBUG: prepared %i packets" % (packets_read,))
 			except IndexError:
-				print "WARNING: invalid data for packet %i, ignoring" % (packets_read+1,)
+				print("WARNING: invalid data for packet %i, ignoring" % (packets_read+1,))
 				continue
 
-		if debug >= 2: print "DEBUG: read packets %i totally, %i in current section" % (packets_read, packets_read_in_section,)
+		if debug >= 2: print("DEBUG: read packets %i totally, %i in current section" % (packets_read, packets_read_in_section,))
 	
-		if debug >= 2: print "DEBUG: looking for yet unknown interfaces"
+		if debug >= 2: print("DEBUG: looking for yet unknown interfaces")
 		if show_timestamps: 
 			timestart_start_interfaces = int(time.mktime(datetime.datetime.now().timetuple()))
-			print "DEBUG: interfaces lookup started at %i, T+%i" % (timestart_start_interfaces, timestart_start_interfaces-timestamp_start)
+			print("DEBUG: interfaces lookup started at %i, T+%i" % (timestart_start_interfaces, timestart_start_interfaces-timestamp_start))
 
 		# for new interfaces, create a pcap interface block
 		for new_iface in (current_ifaces-ifaces):
@@ -895,12 +896,12 @@ def process():
 				iface_type = pcap.LINKTYPE_RAW
 
 			ifaces_blocks[new_iface] = { 'index' : new_index, 'block' : pcap.blockInterfaceDescription(new_iface, iface_type) }
-			if debug >= 3: print "DEBUG: new iface found: \"%s\", assigning index %i" % (new_iface, ifaces_blocks[new_iface]['index'],)
-		if debug >= 2: print "DEBUG: found %i new interfaces" % (len(current_ifaces-ifaces),)
+			if debug >= 3: print("DEBUG: new iface found: \"%s\", assigning index %i" % (new_iface, ifaces_blocks[new_iface]['index'],))
+		if debug >= 2: print("DEBUG: found %i new interfaces" % (len(current_ifaces-ifaces),))
 	
 		# if the amount of interfaces has changed, rebuild the block
 		if len(current_ifaces - ifaces) > 0:
-			if debug >= 2: print "DEBUG: rebuilding interfaces block"
+			if debug >= 2: print("DEBUG: rebuilding interfaces block")
 			for iface in sorted(ifaces_blocks, key=lambda x: ifaces_blocks[x]['index']):
 				#print "new interface: ", iface, ifaces_blocks[iface]
 				ifaces_block += ifaces_blocks[iface]['block']
@@ -908,18 +909,18 @@ def process():
 		ifaces |= current_ifaces   # copy new interfaces to known ifaces
 	
 		# prepare the packets block
-		if debug >= 2: print "DEBUG: formating packets"
+		if debug >= 2: print("DEBUG: formating packets")
 		if show_timestamps: 
 			timestart_start_formating = int(time.mktime(datetime.datetime.now().timetuple()))
-			print "DEBUG: packet formating started at %i, T+%i" % (timestart_start_formating, timestart_start_formating-timestamp_start)
+			print("DEBUG: packet formating started at %i, T+%i" % (timestart_start_formating, timestart_start_formating-timestamp_start))
 
 		packets_formated_in_section = 0
 		ignore_packets = 0
 		blockPackets = []
 		for i in range(skip_packets, len(binary_packets)):
 			(iface_name, timestamp, comment, packetBytes) = binary_packets[i]
-			if show_packets: print "DEBUG: packet: iface=\"%s\", timestamp=\"%s\", comment=\"%s\", binary: \"%s\"" % (
-			                       iface_name, timestamp, comment, binascii.hexlify(packetBytes))
+			if show_packets: print("DEBUG: packet: iface=\"%s\", timestamp=\"%s\", comment=\"%s\", binary: \"%s\"" % (
+			                       iface_name, timestamp, comment, binascii.hexlify(packetBytes)))
 
 			# if this interface is marked as point-to-point, remove artificial ethernet header
 			if iface_name in interfaces_ptp:
@@ -934,8 +935,8 @@ def process():
 				if ethertype == "0x0800": 
 					totallength = int("0x%02x%02x" % (packetBytes[16], packetBytes[17],), 16)
 					if totallength+14 > len(packetBytes):
-						print "WARNING: packet #%i is not complete, ignoring" % (packets_formated+1,)
-						if debug >= 3: print "DEBUG: packet size from IP header %i, (%i including ethernet) total packet size %i" % (totallength, totallength+14, len(packetBytes),)
+						print("WARNING: packet #%i is not complete, ignoring" % (packets_formated+1,))
+						if debug >= 3: print("DEBUG: packet size from IP header %i, (%i including ethernet) total packet size %i" % (totallength, totallength+14, len(packetBytes),))
 						ignore_packets = 1
 	
 			if ignore_packets > 0:
@@ -945,7 +946,7 @@ def process():
 	
 			packets_formated += 1
 			packets_formated_in_section += 1
-			if (debug >= 3) and (packets_formated % 10000 == 0): print "DEBUG: formated %i packets" % (packets_formated,)
+			if (debug >= 3) and (packets_formated % 10000 == 0): print("DEBUG: formated %i packets" % (packets_formated,))
 
 			if show_progress and packets_formated % 1000 == 0:
 				progress_current = i * 100 / len(binary_packets)
@@ -956,13 +957,13 @@ def process():
 					progress_last = progress_current
 
 			if limit_packets and (packets_formated >= limit_packets): break
-		if debug >= 2: print "DEBUG: formated %i packets totally, %i in current section" % (packets_formated, packets_formated_in_section,)
+		if debug >= 2: print("DEBUG: formated %i packets totally, %i in current section" % (packets_formated, packets_formated_in_section,))
 	
 		# now create a new section with interfaces and the packets we have collected in this block
-		if debug >= 2: print "DEBUG: saving current section into the output file"
+		if debug >= 2: print("DEBUG: saving current section into the output file")
 		if show_timestamps: 
 			timestart_start_saving = int(time.mktime(datetime.datetime.now().timetuple()))
-			print "DEBUG: packet saving started at %i, T+%i" % (timestart_start_saving, timestart_start_saving-timestamp_start)
+			print("DEBUG: packet saving started at %i, T+%i" % (timestart_start_saving, timestart_start_saving-timestamp_start))
 
 		pcap.writePackets(ifaces_block, blockPackets)
 	
@@ -973,7 +974,7 @@ def process():
 	if wireshark_ipsec:
 		if show_timestamps: 
 			timestart_start_ipsec = int(time.mktime(datetime.datetime.now().timetuple()))
-			print "DEBUG: ipsec SA lookup started at %i, T+%i" % (timestart_start_ipsec, timestart_start_ipsec-timestamp_start)
+			print("DEBUG: ipsec SA lookup started at %i, T+%i" % (timestart_start_ipsec, timestart_start_ipsec-timestamp_start))
 
 		ipsec = IPSec(sourcefile = input_file)
 		ipsec.find_tunnels()
@@ -981,7 +982,7 @@ def process():
 
 	if show_timestamps: 
 		timestart_done = int(time.mktime(datetime.datetime.now().timetuple()))
-		print "DEBUG: finally done at %i, T+%i" % (timestart_done, timestart_done-timestamp_start)
+		print("DEBUG: finally done at %i, T+%i" % (timestart_done, timestart_done-timestamp_start))
 
 
 
