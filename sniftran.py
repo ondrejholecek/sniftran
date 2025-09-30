@@ -105,6 +105,7 @@ class PacketParser:
 			self.debug_bytesRead += len(line)
 			line = line.strip()
 			if len(line) == 0: continue  # ignore empty lines
+			if 'CAPWAP  Keep Alive' in line: continue #ignore CAPWAP packets
 
 			self.wholefile.append(line)
 			break
