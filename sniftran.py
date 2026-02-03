@@ -2,7 +2,7 @@
 
 # BSD 3-Clause License
 # 
-# Copyright (c) 2015 - 2022, Ondrej Holecek <ondrej at holecek dot eu>
+# Copyright (c) 2015 - 2026, Ondrej Holecek <ondrej at holecek dot eu>
 # All rights reserved.
 # 
 # Redistribution and use in source and binary forms, with or without
@@ -85,8 +85,10 @@ class PacketParser:
 		#self.headerLineTimeAbsolute = re.compile("^([0-9]{4})-(\d\d)-(\d\d) (\d\d):(\d\d):(\d\d)\.([0-9]*) ")
 		#self.headerLineTimeRelative = re.compile("^([0-9]*)\.([0-9]*)[ \t]")
 		# 20220823: recognize 6k7k prefix
-		self.headerLineTimeAbsolute = re.compile("^(?:\[(.*)\s*\]\s+)?([0-9]{4})-(\d\d)-(\d\d) (\d\d):(\d\d):(\d\d)\.([0-9]*) ")
-		self.headerLineTimeRelative = re.compile("^(?:\[(.*)\s*\]\s+)?([0-9]*)\.([0-9]*)[ \t]")
+		#self.headerLineTimeAbsolute = re.compile("^(?:\[(.*)\s*\]\s+)?([0-9]{4})-(\d\d)-(\d\d) (\d\d):(\d\d):(\d\d)\.([0-9]*) ") # warning since 3.12+ (?)
+		#self.headerLineTimeRelative = re.compile("^(?:\[(.*)\s*\]\s+)?([0-9]*)\.([0-9]*)[ \t]") # warning since 3.12+ (?)
+		self.headerLineTimeAbsolute = re.compile(r"^(?:\[(.*)\s*\]\s+)?([0-9]{4})-(\d\d)-(\d\d) (\d\d):(\d\d):(\d\d)\.([0-9]*) ")
+		self.headerLineTimeRelative = re.compile(r"^(?:\[(.*)\s*\]\s+)?([0-9]*)\.([0-9]*)[ \t]")
 		self.headerLineIface = re.compile("^([^ ]*) ([^ ]*) ")
 
 		self.ds = datasource
@@ -105,6 +107,7 @@ class PacketParser:
 			self.debug_bytesRead += len(line)
 			line = line.strip()
 			if len(line) == 0: continue  # ignore empty lines
+			if line.startswith("linux cooked capture"): continue # new from 7.6.5 (?)
 
 			self.wholefile.append(line)
 			break
