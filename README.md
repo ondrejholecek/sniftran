@@ -2,6 +2,8 @@
 
 Program to convert plain text traffic capture from FortiGate and other Fortinet appliances to PCAPng usable in Wireshark. 
 
+You can download prepared binaries form the [Binaries](https://github.com/ondrejholecek/sniftran/tree/master/Binaries) directory.
+
 ## Features
 
 * Automatically adds the interface name and traffic direction to PCAPng comments section. 
